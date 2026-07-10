@@ -1,14 +1,19 @@
 ---
 import '../styles/global.css';
+import '../styles/site-enhancements.css';
 
 interface Props {
   title?: string;
   description?: string;
+  canonicalUrl?: string;
+  ogType?: string;
 }
 
 const {
   title = 'Fragen von Erwachsenen - AdultVragen.de',
   description = 'AdultVragen.de ist die Anlaufstelle für alle Ihre Sex-Fragen. Unsere Benutzer werden Ihnen täglich Antworten auf alle Ihre Fragen geben.',
+  canonicalUrl,
+  ogType = 'website',
 } = Astro.props;
 ---
 
@@ -23,6 +28,12 @@ const {
     <link rel="apple-touch-icon" href="/images/favicons/apple-touch-icon.png" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
   </head>
   <body>
     <a class="skip-link" href="#content">Zum Inhalt springen</a>

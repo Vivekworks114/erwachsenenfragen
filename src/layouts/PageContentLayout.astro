@@ -48,11 +48,22 @@ const showHero = !hasContentTitle(entry);
   .page-hero {
     padding-block: clamp(3rem, 8vw, 5rem) clamp(2rem, 5vw, 3rem);
     border-bottom: 1px solid var(--color-border);
+    background: linear-gradient(180deg, rgba(12, 15, 23, 0.5) 0%, transparent 100%);
   }
 
   .page-hero__title {
     font-size: clamp(2rem, 5vw, 3rem);
     margin-bottom: 0.75rem;
+  }
+
+  .page-hero__title::after {
+    content: '';
+    display: block;
+    width: 3rem;
+    height: 3px;
+    margin-top: 0.875rem;
+    background: var(--color-primary);
+    border-radius: 2px;
   }
 
   .page-hero__subtitle {
@@ -67,6 +78,7 @@ const showHero = !hasContentTitle(entry);
     font-size: 1.0625rem;
     line-height: 1.7;
     color: rgba(255, 255, 255, 0.9);
+    padding-block: clamp(2rem, 5vw, 3rem);
   }
 
   .page-content :global(p) {

@@ -65,12 +65,14 @@ def extract_main_html(html: str) -> str:
     body = re.sub(r"\[dwqa-submit-question-form\]", "", body)
     body = re.sub(r"\[dwqa-user-profile[^\]]*\]", "", body)
     body = re.sub(r"\[zb_mpx_category_links[^\]]*\]", "", body)
-    body = re.sub(r"\[zb_mp_[^\]]+\]", "", body)
+    # Keep [zb_mp_*] template tokens on product template pages.
     body = re.sub(r"<div class=\"elementor-element[^\"]*elementor-widget-divider[^\"]*\"[^>]*>.*?</div>\s*</div>", "", body, flags=re.S)
     body = re.sub(r"\sclass=\"elementor[^\"]*\"", "", body)
     body = re.sub(r"\sclass=\"\"", "", body)
     body = re.sub(r"<div>\s*</div>", "", body)
     body = re.sub(r"\n{3,}", "\n\n", body)
+    body = re.sub(r'\s*<footer class="elementor elementor-245[\s\S]*$', "", body, flags=re.I)
+    body = re.sub(r'\s*<footer class="elementor-location-footer[\s\S]*$', "", body, flags=re.I)
     return body.strip()
 
 
@@ -123,6 +125,8 @@ def rewrite_images(html: str) -> str:
     def repl(match: re.Match[str]) -> str:
         attr = match.group(1)
         url = match.group(2)
+        if '[' in url or not url.strip():
+            return match.group(0)
         if url.startswith("/"):
             url = urljoin(WP_BASE, url)
         local = local_media_path(url)

@@ -17,6 +17,12 @@ const LOCAL_BASE = process.argv.includes('--base')
 
 function collectLocalRoutes() {
   const routes = new Set(['/', '/blog/']);
+  const archiveRoutes = [
+    '/dwqa-questions/artikel/',
+    '/dwqa-questions/business/',
+    '/dwqa-questions/uncategorized/',
+  ];
+  archiveRoutes.forEach((route) => routes.add(route));
 
   const blogDir = path.join(ROOT, 'src/content/blog');
   for (const file of readdirSync(blogDir)) {

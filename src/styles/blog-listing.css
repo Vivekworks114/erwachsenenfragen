@@ -1,0 +1,253 @@
+.elementor-kit-8 {
+  --e-global-color-primary: #cb0000;
+  --e-global-color-secondary: #ffffff;
+  --e-global-color-text: #ffffff;
+  --e-global-color-accent: #cb0000;
+  --e-global-typography-primary-font-family: 'Century Gothic', sans-serif;
+  --e-global-typography-primary-font-weight: 700;
+  --e-global-typography-primary-line-height: 1.2em;
+  --e-global-typography-secondary-font-family: 'Century Gothic', sans-serif;
+  --e-global-typography-secondary-font-weight: 700;
+  --e-global-typography-secondary-line-height: 1.2em;
+  --e-global-typography-text-font-family: 'Century Gothic', sans-serif;
+  --e-global-typography-text-font-size: 16px;
+  --e-global-typography-text-font-weight: 400;
+  --e-global-typography-text-line-height: 1.4em;
+  --e-global-typography-accent-font-family: 'Montserrat', sans-serif;
+  --e-global-typography-accent-font-size: 14px;
+  --e-global-typography-accent-font-weight: 700;
+}
+
+.elementor-2082 {
+  --grid-row-gap: 35px;
+  --grid-column-gap: 30px;
+  padding-block: 2.5rem 4rem;
+}
+
+.elementor-section {
+  position: relative;
+}
+
+.elementor-section.elementor-section-boxed > .elementor-container {
+  max-width: 1160px;
+  margin-inline: auto;
+}
+
+.elementor-container {
+  display: flex;
+  position: relative;
+  width: 100%;
+}
+
+.elementor-column-gap-default > .elementor-column > .elementor-element-populated {
+  padding: 10px;
+}
+
+.elementor-col-100 {
+  width: 100%;
+}
+
+.elementor-widget:not(:last-child) {
+  margin-block-end: 20px;
+}
+
+.elementor-heading-title {
+  padding: 0;
+  margin: 0;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  line-height: var(--e-global-typography-primary-line-height);
+  font-family: var(--e-global-typography-primary-font-family), sans-serif;
+  font-weight: var(--e-global-typography-primary-font-weight);
+  color: var(--e-global-color-primary);
+}
+
+.elementor-posts-widget {
+  --grid-row-gap: 35px;
+  --grid-column-gap: 30px;
+}
+
+.elementor-grid {
+  display: grid;
+  grid-column-gap: var(--grid-column-gap);
+  grid-row-gap: var(--grid-row-gap);
+}
+
+.elementor-grid-4 .elementor-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.elementor-grid .elementor-grid-item {
+  min-width: 0;
+}
+
+.elementor-posts-container .elementor-post {
+  margin: 0;
+  padding: 0;
+}
+
+.elementor-posts .elementor-post {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--card-radius-lg);
+  overflow: hidden;
+  transition:
+    transform var(--transition),
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+.elementor-posts .elementor-post:hover {
+  transform: translateY(-4px);
+  border-color: rgba(203, 0, 0, 0.4);
+  box-shadow: var(--shadow-md);
+}
+
+.elementor-posts--skin-classic .elementor-post {
+  overflow: hidden;
+}
+
+.elementor-posts--thumbnail-top .elementor-post__thumbnail__link {
+  margin-bottom: 20px;
+}
+
+.elementor-posts-container .elementor-post__thumbnail {
+  overflow: hidden;
+  position: relative;
+  padding-bottom: calc(0.66 * 100%);
+}
+
+.elementor-posts-container .elementor-post__thumbnail img {
+  display: block;
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: calc(50% + 1px);
+  left: calc(50% + 1px);
+  transform: scale(1.01) translate(-50%, -50%);
+  max-height: none;
+  max-width: none;
+  transition: transform 0.35s ease, filter 0.3s;
+}
+
+.elementor-post__thumbnail__link {
+  display: block;
+  position: relative;
+  width: 100%;
+}
+
+.elementor-post__thumbnail__link:hover img,
+.elementor-post__thumbnail__link:focus-visible img {
+  transform: scale(1.06) translate(-50%, -50%);
+}
+
+.elementor-posts .elementor-post__text {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 1rem 1.125rem 1.25rem;
+}
+
+.elementor-posts .elementor-post__title {
+  font-size: 18px;
+  margin: 0;
+  font-family: var(--e-global-typography-primary-font-family), sans-serif;
+  font-weight: var(--e-global-typography-primary-font-weight);
+  line-height: var(--e-global-typography-primary-line-height);
+}
+
+.elementor-posts .elementor-post__title,
+.elementor-posts .elementor-post__title a {
+  color: var(--e-global-color-secondary);
+}
+
+.elementor-posts .elementor-post__title a:hover,
+.elementor-posts .elementor-post__title a:focus-visible {
+  color: var(--e-global-color-accent);
+}
+
+.elementor-posts .elementor-post__meta-data {
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  line-height: 1.3em;
+  margin-bottom: 0.5rem;
+  font-family: var(--e-global-typography-secondary-font-family), sans-serif;
+  font-weight: var(--e-global-typography-secondary-font-weight);
+}
+
+.elementor-posts .elementor-post__excerpt {
+  margin-bottom: 10px;
+  flex-grow: 1;
+}
+
+.elementor-posts .elementor-post__excerpt p {
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+  line-height: 1.55;
+  margin: 0;
+  font-family: var(--e-global-typography-text-font-family), sans-serif;
+  font-weight: var(--e-global-typography-text-font-weight);
+}
+
+.elementor-posts .elementor-post__read-more {
+  align-self: flex-start;
+  margin-top: auto;
+  padding-top: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--e-global-color-accent);
+  font-family: var(--e-global-typography-accent-font-family), sans-serif;
+}
+
+.elementor-posts .elementor-post__read-more:hover,
+.elementor-posts .elementor-post__read-more:focus-visible {
+  color: var(--e-global-color-accent);
+  opacity: 0.85;
+  outline: 2px solid var(--e-global-color-accent);
+  outline-offset: 2px;
+}
+
+@media (max-width: 1024px) {
+  .elementor-container {
+    flex-wrap: wrap;
+  }
+
+  .elementor-section.elementor-section-boxed > .elementor-container {
+    max-width: 1024px;
+  }
+
+  .elementor-grid-tablet-2 .elementor-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .elementor-kit-8 {
+    --e-global-typography-text-font-size: 14px;
+  }
+
+  .elementor-2082 {
+    padding-block: 1.75rem 3rem;
+  }
+
+  .elementor-section.elementor-section-boxed > .elementor-container {
+    max-width: 767px;
+  }
+
+  .elementor-grid-mobile-1 .elementor-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .elementor-posts-container .elementor-post__thumbnail {
+    padding-bottom: calc(0.5 * 100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .elementor-posts-container .elementor-post__thumbnail img,
+  .elementor-posts .elementor-post {
+    transition: none;
+  }
+}

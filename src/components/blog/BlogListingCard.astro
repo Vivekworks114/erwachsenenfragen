@@ -1,0 +1,56 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import {
+  formatBlogDate,
+  getListingExcerpt,
+  getListingImage,
+} from '../../lib/blog-listing';
+
+interface Props {
+  entry: CollectionEntry<'blog'>;
+}
+
+const { entry } = Astro.props;
+const postUrl = `/${entry.id}/`;
+const image = getListingImage(entry);
+const excerpt = getListingExcerpt(entry);
+const formattedDate = formatBlogDate(entry.data.pubDate);
+---
+
+<article
+  class:list={['elementor-post elementor-grid-item', image && 'has-post-thumbnail']}
+  role="listitem"
+>
+  {
+    image && (
+      <a class="elementor-post__thumbnail__link" href={postUrl} tabindex="-1" aria-hidden="true">
+        <div class="elementor-post__thumbnail">
+          <img
+            src={image.src}
+            alt={image.alt}
+            width={image.width}
+            height={image.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </a>
+    )
+  }
+  <div class="elementor-post__text">
+    <p class="elementor-post__title">
+      <a href={postUrl}>{entry.data.title}</a>
+    </p>
+    <div class="elementor-post__meta-data">
+      <time class="elementor-post-date" datetime={entry.data.pubDate.toISOString()}>
+        {formattedDate}
+      </time>
+    </div>
+    <div class="elementor-post__excerpt">
+      <p>{excerpt}</p>
+    </div>
+    <a class="elementor-post__read-more" href={postUrl} aria-label={`Weiterlesen: ${entry.data.title}`}>
+      Weiterlesen »
+    </a>
+  </div>
+</article>

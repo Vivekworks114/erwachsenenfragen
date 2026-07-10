@@ -25,10 +25,10 @@ const blogPosts = (await getCollection('blog'))
         den besten Produkten für das Schlafzimmer suchen.
       </p>
       <p class="footer__links-inline">
-        <strong><a href="/sitemap">Sitemap</a></strong>
+        <strong><a href="/sitemap/">Sitemap</a></strong>
       </p>
       <p class="footer__links-inline">
-        <a href="/impressum" target="_blank" rel="noopener">Impressum</a>
+        <a href="/impressum/" target="_blank" rel="noopener">Impressum</a>
       </p>
       <div class="footer__social" aria-label="Soziale Medien">
         <a href="#" class="footer__social-link" aria-label="Facebook" target="_blank" rel="noopener">
@@ -44,11 +44,11 @@ const blogPosts = (await getCollection('blog'))
           <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
         </a>
       </div>
-      <p class="footer__copyright">© 2026 Alle rechten voorbehouden</p>
+      <p class="footer__copyright">© 2026 Alle Rechte vorbehalten</p>
     </div>
 
     <div class="footer__column">
-      <h4 class="footer__heading">Informatie</h4>
+      <h4 class="footer__heading">Informationen</h4>
       <ul class="footer__list">
         {footerInfoLinks.map((link) => (
           <li><a href={link.href}>{link.label}</a></li>
@@ -57,7 +57,7 @@ const blogPosts = (await getCollection('blog'))
     </div>
 
     <div class="footer__column">
-      <h4 class="footer__heading">Nieuwste blogs</h4>
+      <h4 class="footer__heading">Neueste Blogs</h4>
       <ul class="footer__list footer__list--blogs">
         {blogPosts.map((post) => (
           <li>
@@ -87,11 +87,16 @@ const blogPosts = (await getCollection('blog'))
 
     <div class="footer__column">
       <h4 class="footer__heading">Luftaufbereitung</h4>
-      <ul class="footer__list">
-        {footerAirLinks.map((link) => (
-          <li><a href={link.href}>{link.label}</a></li>
-        ))}
-      </ul>
+      <p class="footer__air-links">
+        {
+          footerAirLinks.map((link, index) => (
+            <>
+              {index > 0 && <br />}
+              <a href={link.href}>{link.label}</a>
+            </>
+          ))
+        }
+      </p>
     </div>
   </div>
 </footer>
@@ -99,6 +104,7 @@ const blogPosts = (await getCollection('blog'))
 <style>
   .footer {
     background-color: var(--color-surface);
+    border-top: 1px solid rgba(70, 75, 88, 0.35);
     padding-block: clamp(2.25rem, 5vw, 4.5rem) clamp(1.5rem, 3vw, 2.75rem);
   }
 
@@ -157,31 +163,50 @@ const blogPosts = (await getCollection('blog'))
 
   .footer__heading {
     font-size: 1rem;
-    color: var(--color-border);
+    color: var(--color-text-muted);
     margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-primary);
+    display: inline-block;
+  }
+
+  .footer__list a {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--color-text);
+    transition: color var(--transition), padding-left var(--transition);
+  }
+
+  .footer__list a:hover {
+    color: var(--color-primary);
+    padding-left: 0.25rem;
   }
 
   .footer__list {
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
-  }
-
-  .footer__list a {
-    font-size: 14px;
-    line-height: 2;
-    color: var(--color-text);
-    transition: color var(--transition);
-  }
-
-  .footer__list a:hover {
-    color: var(--color-primary);
+    gap: 0.125rem;
   }
 
   .footer__list--blogs a {
     line-height: 1.4;
     font-weight: 700;
     padding-block: 0.25rem;
+  }
+
+  .footer__air-links {
+    font-size: 14px;
+    line-height: 2;
+    margin: 0;
+  }
+
+  .footer__air-links a {
+    color: var(--color-text);
+    transition: color var(--transition);
+  }
+
+  .footer__air-links a:hover {
+    color: var(--color-primary);
   }
 
   @media (max-width: 1023px) {

@@ -1,101 +1,235 @@
 ---
-import { getCollection, getEntry } from 'astro:content';
-import PageContentLayout from '../layouts/PageContentLayout.astro';
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { catalog } from '../data/products';
-
-const entry = await getEntry('pages', 'sitemap');
-if (!entry) throw new Error('Missing page: sitemap');
+import '../styles/sitemap.css';
 
 const blogPosts = (await getCollection('blog')).sort((a, b) =>
-  a.data.title.localeCompare(b.data.title),
+  a.data.title.localeCompare(b.data.title, 'de'),
 );
+
 const pages = (await getCollection('pages'))
   .filter((page) => !page.id.startsWith('beste-'))
-  .sort((a, b) => a.data.title.localeCompare(b.data.title));
-const products = [...catalog.products].sort((a, b) => a.name.localeCompare(b.name));
-const categories = [...catalog.categories].sort((a, b) => a.name.localeCompare(b.name));
+  .sort((a, b) => a.data.title.localeCompare(b.data.title, 'de'));
+
+const staticPages = [
+  { title: 'Home', href: '/' },
+  ...pages.map((page) => ({
+    title: page.data.title,
+    href: `/${page.id}/`,
+  })),
+];
+
+const categories = [...catalog.categories].sort((a, b) =>
+  a.name.localeCompare(b.name, 'de'),
+);
+
+const blogCategoryMap: Record<string, string> = {
+  Artikel: '/dwqa-questions/artikel/',
+  Business: '/dwqa-questions/business/',
+  Uncategorized: '/dwqa-questions/uncategorized/',
+};
+
+const blogByCategory = blogPosts.reduce<Record<string, typeof blogPosts>>((groups, post) => {
+  const category = post.data.categories?.[0] || 'Uncategorized';
+  if (!groups[category]) groups[category] = [];
+  groups[category].push(post);
+  return groups;
+}, {});
+
+const blogCategories = Object.keys(blogByCategory).sort((a, b) => a.localeCompare(b, 'de'));
+const productCount = catalog.products.length;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
 ---
 
-<PageContentLayout entry={entry}>
-  <Header slot="header" />
-  <h2>Blog-Artikel</h2>
-  <ul class="sitemap-list">
-    {
-      blogPosts.map((post) => (
-        <li>
-          <a href={`/${post.id}/`}>{post.data.title}</a>
-        </li>
-      ))
-    }
-  </ul>
+<BaseLayout
+  title="Sitemap - AdultVragen.de"
+  description="Übersicht aller Seiten, Produktvergleiche und Blog-Beiträge auf AdultVragen.de."
+  canonicalUrl={canonicalUrl}
+>
+  <Header />
 
-  <h2>Seiten</h2>
-  <ul class="sitemap-list">
-    {
-      pages.map((page) => (
-        <li>
-          <a href={`/${page.id}/`}>{page.data.title}</a>
-        </li>
-      ))
-    }
-  </ul>
+  <main id="content">
+    <section class="sitemap-hero">
+      <div class="container">
+        <h1 class="sitemap-hero__title">Sitemap</h1>
+        <p class="sitemap-hero__subtitle">
+          Finden Sie schnell alle Seiten, Produktvergleiche und Blog-Beiträge auf AdultVragen.de.
+        </p>
+        <div class="sitemap-stats">
+          <span class="sitemap-stat"><strong>{staticPages.length}</strong> Seiten</span>
+          <span class="sitemap-stat"><strong>{productCount}</strong> Produktvergleiche</span>
+          <span class="sitemap-stat"><strong>{blogPosts.length}</strong> Blog-Beiträge</span>
+        </div>
+      </div>
+    </section>
 
-  <h2>Kategorien</h2>
-  <ul class="sitemap-list">
-    {
-      categories.map((category) => (
-        <li>
-          <a href={category.href}>{category.name}</a> ({category.productCount})
-        </li>
-      ))
-    }
-  </ul>
+    <section class="sitemap-body">
+      <div class="container sitemap-grid">
+        <article class="sitemap-card">
+          <div class="sitemap-card__header">
+            <h2 class="sitemap-card__title">Seiten</h2>
+            <span class="sitemap-card__count">{staticPages.length}</span>
+          </div>
+          <ul class="sitemap-links">
+            {
+              staticPages.map((page) => (
+                <li>
+                  <a class="sitemap-link" href={page.href}>
+                    <span class="sitemap-link__text">{page.title}</span>
+                    <svg
+                      class="sitemap-link__arrow"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 14 14"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M5 3l4 4-4 4"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </article>
 
-  <h2>Produktvergleiche ({products.length})</h2>
-  <ul class="sitemap-list">
-    {
-      products.map((product) => (
-        <li>
-          <a href={product.href}>{product.name}</a>
-        </li>
-      ))
-    }
-  </ul>
-  <Footer slot="footer" />
-</PageContentLayout>
+        <article class="sitemap-card">
+          <div class="sitemap-card__header">
+            <h2 class="sitemap-card__title">Kategorien</h2>
+            <span class="sitemap-card__count">{categories.length}</span>
+          </div>
+          <ul class="sitemap-links">
+            {
+              categories.map((category) => (
+                <li>
+                  <a class="sitemap-link" href={category.href}>
+                    <span class="sitemap-link__text">
+                      {category.name} ({category.productCount})
+                    </span>
+                    <svg
+                      class="sitemap-link__arrow"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 14 14"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M5 3l4 4-4 4"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </article>
 
-<style>
-  .sitemap-list {
-    margin-bottom: 2rem;
-    columns: 2;
-    gap: 2rem;
-    padding-left: 1.25rem;
-    list-style: disc;
-  }
+        <article class="sitemap-card sitemap-card--wide">
+          <div class="sitemap-card__header">
+            <h2 class="sitemap-card__title">Produktvergleiche</h2>
+            <span class="sitemap-card__count">{productCount}</span>
+          </div>
+          {
+            categories.map((category) => (
+              <div class="sitemap-group">
+                <h3 class="sitemap-group__title">
+                  <a href={category.href}>{category.name}</a>
+                </h3>
+                <ul class="sitemap-links">
+                  {
+                    category.products
+                      .slice()
+                      .sort((a, b) => a.name.localeCompare(b.name, 'de'))
+                      .map((product) => (
+                        <li>
+                          <a class="sitemap-link" href={product.href}>
+                            <span class="sitemap-link__text">Top 10 {product.name}</span>
+                            <svg
+                              class="sitemap-link__arrow"
+                              width="14"
+                              height="14"
+                              viewBox="0 0 14 14"
+                              aria-hidden="true"
+                            >
+                              <path
+                                d="M5 3l4 4-4 4"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              />
+                            </svg>
+                          </a>
+                        </li>
+                      ))
+                  }
+                </ul>
+              </div>
+            ))
+          }
+        </article>
 
-  .sitemap-list li {
-    margin-bottom: 0.5rem;
-  }
+        <article class="sitemap-card sitemap-card--wide">
+          <div class="sitemap-card__header">
+            <h2 class="sitemap-card__title">Beiträge nach Kategorie</h2>
+            <span class="sitemap-card__count">{blogPosts.length}</span>
+          </div>
+          {
+            blogCategories.map((category) => (
+              <div class="sitemap-group">
+                <h3 class="sitemap-group__title">
+                  Kategorie:{' '}
+                  <a href={blogCategoryMap[category] || '/blog/'}>{category}</a>
+                </h3>
+                <ul class="sitemap-links">
+                  {
+                    blogByCategory[category].map((post) => (
+                      <li>
+                        <a class="sitemap-link" href={`/${post.id}/`}>
+                          <span class="sitemap-link__text">{post.data.title}</span>
+                          <svg
+                            class="sitemap-link__arrow"
+                            width="14"
+                            height="14"
+                            viewBox="0 0 14 14"
+                            aria-hidden="true"
+                          >
+                            <path
+                              d="M5 3l4 4-4 4"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="1.5"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                        </a>
+                      </li>
+                    ))
+                  }
+                </ul>
+              </div>
+            ))
+          }
+        </article>
+      </div>
+    </section>
+  </main>
 
-  .sitemap-list a {
-    color: var(--color-text);
-  }
-
-  .sitemap-list a:hover {
-    color: var(--color-primary);
-  }
-
-  h2 {
-    font-size: 1.25rem;
-    margin: 1.5rem 0 0.75rem;
-    color: var(--color-primary);
-  }
-
-  @media (max-width: 599px) {
-    .sitemap-list {
-      columns: 1;
-    }
-  }
-</style>
+  <Footer />
+</BaseLayout>

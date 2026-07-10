@@ -1,0 +1,114 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import {
+  blogCategoryArchives,
+  getPostsForCategory,
+  isBlogCategorySlug,
+} from '../../lib/blog-categories';
+import { getListingExcerpt, getListingImage } from '../../lib/blog-listing';
+
+export async function getStaticPaths() {
+  return Object.keys(blogCategoryArchives).map((category) => ({
+    params: { category },
+  }));
+}
+
+const { category } = Astro.params;
+if (!category || !isBlogCategorySlug(category)) {
+  return Astro.redirect('/404');
+}
+
+const meta = blogCategoryArchives[category];
+const allPosts = await getCollection('blog');
+const posts = getPostsForCategory(allPosts, category);
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+---
+
+<BaseLayout title={meta.title} description={meta.description} canonicalUrl={canonicalUrl}>
+  <Header />
+  <main id="content" class="category-archive">
+    <div class="container">
+      <header class="category-archive__header">
+        <h1 class="category-archive__title">
+          Kategorie: <span>{meta.label}</span>
+        </h1>
+      </header>
+
+      <div class="category-archive__content page-content">
+        {
+          posts.map((post) => {
+            const postUrl = `/${post.id}/`;
+            const image = getListingImage(post);
+            const excerpt = getListingExcerpt(post);
+
+            return (
+              <article class="content-card post">
+                <h2 class="content-card__title entry-title">
+                  <a href={postUrl}>{post.data.title}</a>
+                </h2>
+                {
+                  image && (
+                    <a href={postUrl} class="content-card__media post__thumbnail-link" aria-hidden="true" tabindex="-1">
+                      <img
+                        src={image.src}
+                        alt={image.alt}
+                        width={image.width}
+                        height={image.height}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </a>
+                  )
+                }
+                <p class="content-card__excerpt">{excerpt}</p>
+                <a href={postUrl} class="content-card__link">Weiterlesen »</a>
+              </article>
+            );
+          })
+        }
+      </div>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .category-archive {
+    padding-block: 2.5rem 4rem;
+  }
+
+  .category-archive__title {
+    margin: 0 0 2rem;
+    font-family: var(--font-heading);
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--color-primary);
+  }
+
+  .category-archive__title span {
+    color: var(--color-text);
+  }
+
+  .category-archive__content {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .category-archive__content .post {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .entry-title {
+    margin: 0 0 0.75rem;
+    font-size: 1.25rem;
+    line-height: 1.3;
+  }
+
+  .post__thumbnail-link {
+    margin-bottom: 0.75rem;
+  }
+</style>

@@ -10,11 +10,11 @@ const { title = 'Kontakt', subtitle = 'Haben Sie Fragen? Schreiben Sie uns.' } =
 <section class="contact section section--surface">
   <div class="container contact__inner">
     <div class="contact__intro">
-      <h2 class="contact__title">{title}</h2>
+      <h1 class="contact__title">{title}</h1>
       <p class="contact__subtitle">{subtitle}</p>
     </div>
 
-    <form class="contact__form" action="#" method="post">
+    <form class="contact__form card-panel" action="#" method="post">
       <div class="contact__field">
         <label for="contact-name">Name</label>
         <input type="text" id="contact-name" name="name" required placeholder="Ihr Name" />
@@ -46,8 +46,21 @@ const { title = 'Kontakt', subtitle = 'Haben Sie Fragen? Schreiben Sie uns.' } =
   }
 
   .contact__title {
-    font-size: clamp(1.75rem, 4vw, 2.25rem);
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
     margin-bottom: 0.75rem;
+  }
+
+  .card-panel {
+    padding: clamp(1.25rem, 3vw, 1.75rem);
+    background: var(--color-surface-elevated);
+    border: 1px solid var(--color-border);
+    border-radius: var(--card-radius-lg);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .contact__field input:hover,
+  .contact__field textarea:hover {
+    border-color: rgba(203, 0, 0, 0.35);
   }
 
   .contact__subtitle {

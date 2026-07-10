@@ -1,0 +1,30 @@
+---
+import { uberUnsIntro, uberUnsPartners } from '../data/uber-uns-partners';
+---
+
+<div class="elementor elementor-154 elementor-kit-8">
+  <section class="elementor-section uber-uns-section" aria-labelledby="uber-uns-heading">
+    <div class="uber-uns-section__overlay" aria-hidden="true"></div>
+    <div class="uber-uns-section__inner">
+      <div class="uber-uns-block">
+        <h2 id="uber-uns-heading" class="elementor-heading-title">Über uns</h2>
+        <p class="uber-uns-text">{uberUnsIntro}</p>
+      </div>
+
+      <div class="uber-uns-block">
+        <h2 id="partner-heading" class="elementor-heading-title">Partner</h2>
+        <ul class="uber-uns-partners" aria-labelledby="partner-heading">
+          {
+            uberUnsPartners.map((partner) => (
+              <li>
+                <a href={partner.href} target="_blank" rel="noopener noreferrer">
+                  {partner.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>

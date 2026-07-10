@@ -5,19 +5,22 @@ import Hero from '../components/Hero.astro';
 import Features from '../components/Features.astro';
 import CTA from '../components/CTA.astro';
 import ProductGrid from '../components/ProductGrid.astro';
+import RecentQuestions from '../components/RecentQuestions.astro';
 import Footer from '../components/Footer.astro';
 import { reviews, popularProducts } from '../data/products';
 ---
 
 <BaseLayout>
-  <Header />
+  <Header class="header--home" />
   <main id="content">
     <Hero />
 
     <Features
       title="Letzte Fragen"
       description="Sehen Sie sich hier die neuesten Fragen an, die auf unserer Website diskutiert werden, und unterhalten Sie sich mit uns."
-    />
+    >
+      <RecentQuestions />
+    </Features>
 
     <CTA
       title="Stellen Sie Ihre Frage hier"

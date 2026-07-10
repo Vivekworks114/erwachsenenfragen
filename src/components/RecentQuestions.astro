@@ -1,0 +1,66 @@
+---
+import { getCollection } from 'astro:content';
+import { formatBlogDate, getListingExcerpt, getListingImage } from '../lib/blog-listing';
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+---
+
+<div class="section-content">
+  <div class="content-card-grid content-card-grid--3">
+    {
+      posts.map((post) => {
+        const postUrl = `/${post.id}/`;
+        const image = getListingImage(post);
+        const excerpt = getListingExcerpt(post);
+
+        return (
+          <article class="content-card">
+            {
+              image && (
+                <a href={postUrl} class="content-card__media" tabindex="-1" aria-hidden="true">
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    width={image.width}
+                    height={image.height}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </a>
+              )
+            }
+            <div class="content-card__body">
+              <time class="content-card__meta" datetime={post.data.pubDate.toISOString()}>
+                {formatBlogDate(post.data.pubDate)}
+              </time>
+              <h3 class="content-card__title">
+                <a href={postUrl}>{post.data.title}</a>
+              </h3>
+              <p class="content-card__excerpt">{excerpt}</p>
+              <a href={postUrl} class="content-card__link">
+                Weiterlesen »
+              </a>
+            </div>
+          </article>
+        );
+      })
+    }
+  </div>
+
+  <div class="recent-questions__actions">
+    <a href="/fragen-anzeigen/" class="btn btn--outline">Alle Fragen ansehen</a>
+    <a href="/fragen-stellen/" class="btn btn--primary">Frage stellen</a>
+  </div>
+</div>
+
+<style>
+  .recent-questions__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: clamp(2rem, 4vw, 3rem);
+  }
+</style>
