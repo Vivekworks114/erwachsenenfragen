@@ -1,0 +1,31 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Fragen von Erwachsenen - AdultVragen.de',
+  description = 'AdultVragen.de ist die Anlaufstelle für alle Ihre Sex-Fragen. Unsere Benutzer werden Ihnen täglich Antworten auf alle Ihre Fragen geben.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/images/favicons/favicon-192x192.png" />
+    <link rel="apple-touch-icon" href="/images/favicons/apple-touch-icon.png" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Zum Inhalt springen</a>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,22 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Contact from '../components/Contact.astro';
+
+const entry = await getEntry('pages', 'kontakt');
+if (!entry) throw new Error('Missing page: kontakt');
+const { title, description } = entry.data;
+---
+
+<BaseLayout title={`${title} - AdultVragen.de`} description={description || title}>
+  <Header />
+  <main id="content">
+    <Contact
+      title={title}
+      subtitle={description || 'Haben Sie Fragen oder Anmerkungen? Schreiben Sie uns.'}
+    />
+  </main>
+  <Footer />
+</BaseLayout>

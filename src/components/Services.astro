@@ -1,0 +1,18 @@
+---
+import Features from './Features.astro';
+import ProductGrid from './ProductGrid.astro';
+import type { Product } from '../data/products';
+
+interface Props {
+  title: string;
+  description?: string;
+  items: Product[];
+  showAllHref?: string;
+}
+
+const { title, description, items, showAllHref } = Astro.props;
+---
+
+<Features title={title} description={description}>
+  <ProductGrid items={items} showAllHref={showAllHref} />
+</Features>

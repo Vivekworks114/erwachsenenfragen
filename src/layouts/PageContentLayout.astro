@@ -1,0 +1,78 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  entry: CollectionEntry<'pages'>;
+}
+
+const { entry } = Astro.props;
+const { title, description } = entry.data;
+---
+
+<BaseLayout
+  title={`${title} - AdultVragen.de`}
+  description={description || title}
+>
+  <slot name="header" />
+  <main id="content">
+    <section class="page-hero section--surface">
+      <div class="container">
+        <h1 class="page-hero__title">{title}</h1>
+        {description && <p class="page-hero__subtitle">{description}</p>}
+      </div>
+    </section>
+    <section class="section">
+      <div class="container page-content prose">
+        {
+          entry.data.contentHtml ? (
+            <div class="wp-content" set:html={entry.data.contentHtml} />
+          ) : (
+            <slot />
+          )
+        }
+      </div>
+    </section>
+  </main>
+  <slot name="footer" />
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding-block: clamp(3rem, 8vw, 5rem) clamp(2rem, 5vw, 3rem);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .page-hero__title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .page-hero__subtitle {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+    max-width: 640px;
+    line-height: 1.5;
+  }
+
+  .page-content {
+    max-width: 800px;
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .page-content :global(p) {
+    margin-bottom: 1.25rem;
+  }
+
+  .page-content :global(a) {
+    color: var(--color-primary);
+  }
+
+  .page-content :global(h2),
+  .page-content :global(h3) {
+    font-family: var(--font-heading);
+    margin: 2rem 0 1rem;
+  }
+</style>

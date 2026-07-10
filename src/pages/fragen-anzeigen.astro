@@ -1,0 +1,16 @@
+---
+import { getEntry, render } from 'astro:content';
+import PageContentLayout from '../layouts/PageContentLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const entry = await getEntry('pages', 'fragen-anzeigen');
+if (!entry) throw new Error('Missing page: fragen-anzeigen');
+const { Content } = await render(entry);
+---
+
+<PageContentLayout entry={entry}>
+  <Header slot="header" />
+  <Content />
+  <Footer slot="footer" />
+</PageContentLayout>

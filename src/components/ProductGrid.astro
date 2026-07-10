@@ -1,0 +1,40 @@
+---
+import type { Product } from '../data/products';
+
+interface Props {
+  items: Product[];
+  showAllHref?: string;
+}
+
+const { items, showAllHref = '/sitemap' } = Astro.props;
+---
+
+<div class="product-grid card-grid card-grid--4">
+  {
+    items.map((item) => (
+      <article class="product-card">
+        <h4 class="product-card__title">
+          <a href={item.href}>{item.title}</a>
+        </h4>
+      </article>
+    ))
+  }
+</div>
+
+{
+  showAllHref && (
+    <div class="product-grid__action">
+      <a href={showAllHref} class="btn btn--outline">
+        Alle anzeigen
+      </a>
+    </div>
+  )
+}
+
+<style>
+  .product-grid__action {
+    display: flex;
+    justify-content: center;
+    margin-top: clamp(2rem, 5vw, 4.5rem);
+  }
+</style>

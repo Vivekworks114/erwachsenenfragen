@@ -1,0 +1,132 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'blog'>;
+  featured?: boolean;
+}
+
+const { entry, featured = false } = Astro.props;
+const { title, description, pubDate, categories, image, imageAlt } = entry.data;
+const postUrl = `/${entry.id}/`;
+
+const formattedDate = pubDate.toLocaleDateString('de-DE', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+const fallbackImage = '/images/media/2024/08/pexels-pixabay-263402-300x199.jpg';
+const displayImage = image || fallbackImage;
+---
+
+<article class:list={['blog-card', featured && 'blog-card--featured']}>
+  <a href={postUrl} class="blog-card__image-link">
+    <img
+      src={displayImage}
+      alt={imageAlt || title}
+      width={800}
+      height={533}
+      loading="lazy"
+      class="blog-card__image"
+    />
+  </a>
+  <div class="blog-card__body">
+    <p class="blog-card__meta">
+      {
+        categories && categories.length > 0 && (
+          <span class="blog-card__category">{categories[0]}</span>
+        )
+      }
+      <time datetime={pubDate.toISOString()}>{formattedDate}</time>
+    </p>
+    <h3 class="blog-card__title">
+      <a href={postUrl}>{title}</a>
+    </h3>
+    {featured && description && <p class="blog-card__excerpt">{description}</p>}
+  </div>
+</article>
+
+<style>
+  .blog-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    transition:
+      border-color var(--transition),
+      transform var(--transition),
+      box-shadow var(--transition);
+  }
+
+  .blog-card:hover {
+    border-color: rgba(203, 0, 0, 0.5);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  }
+
+  .blog-card__image-link {
+    display: block;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+  }
+
+  .blog-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .blog-card:hover .blog-card__image {
+    transform: scale(1.04);
+  }
+
+  .blog-card__body {
+    padding: 1.25rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .blog-card__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .blog-card__category {
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+
+  .blog-card__title {
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    line-height: 1.3;
+  }
+
+  .blog-card__title a:hover {
+    color: var(--color-primary);
+  }
+
+  .blog-card__excerpt {
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .blog-card--featured .blog-card__title {
+    font-size: 1.25rem;
+  }
+</style>

@@ -1,0 +1,99 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import PageContentLayout from '../layouts/PageContentLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { reviews, popularProducts } from '../data/products';
+
+const entry = await getEntry('pages', 'sitemap');
+if (!entry) throw new Error('Missing page: sitemap');
+
+const blogPosts = (await getCollection('blog')).sort((a, b) =>
+  a.data.title.localeCompare(b.data.title),
+);
+const pages = (await getCollection('pages')).sort((a, b) =>
+  a.data.title.localeCompare(b.data.title),
+);
+---
+
+<PageContentLayout entry={entry}>
+  <Header slot="header" />
+  <h2>Blog-Artikel</h2>
+  <ul class="sitemap-list">
+    {
+      blogPosts.map((post) => (
+        <li>
+          <a href={`/${post.id}/`}>{post.data.title}</a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <h2>Seiten</h2>
+  <ul class="sitemap-list">
+    {
+      pages.map((page) => (
+        <li>
+          <a href={`/${page.id}/`}>{page.data.title}</a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <h2>Bewertungen</h2>
+  <ul class="sitemap-list">
+    {
+      reviews.map((item) => (
+        <li>
+          <a href={item.href}>{item.title}</a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <h2>Beliebte Produkte</h2>
+  <ul class="sitemap-list">
+    {
+      popularProducts.map((item) => (
+        <li>
+          <a href={item.href}>{item.title}</a>
+        </li>
+      ))
+    }
+  </ul>
+  <Footer slot="footer" />
+</PageContentLayout>
+
+<style>
+  .sitemap-list {
+    margin-bottom: 2rem;
+    columns: 2;
+    gap: 2rem;
+    padding-left: 1.25rem;
+    list-style: disc;
+  }
+
+  .sitemap-list li {
+    margin-bottom: 0.5rem;
+  }
+
+  .sitemap-list a {
+    color: var(--color-text);
+  }
+
+  .sitemap-list a:hover {
+    color: var(--color-primary);
+  }
+
+  h2 {
+    font-size: 1.25rem;
+    margin: 1.5rem 0 0.75rem;
+    color: var(--color-primary);
+  }
+
+  @media (max-width: 599px) {
+    .sitemap-list {
+      columns: 1;
+    }
+  }
+</style>

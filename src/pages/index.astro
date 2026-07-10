@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Features from '../components/Features.astro';
+import CTA from '../components/CTA.astro';
+import ProductGrid from '../components/ProductGrid.astro';
+import Footer from '../components/Footer.astro';
+import { reviews, popularProducts } from '../data/products';
+---
+
+<BaseLayout>
+  <Header />
+  <main id="content">
+    <Hero />
+
+    <Features
+      title="Letzte Fragen"
+      description="Sehen Sie sich hier die neuesten Fragen an, die auf unserer Website diskutiert werden, und unterhalten Sie sich mit uns."
+    />
+
+    <CTA
+      title="Stellen Sie Ihre Frage hier"
+      subtitle="Haben Sie eine Frage und möchten Sie eine schnelle Antwort? Fragen Sie hier"
+      buttonText="Eine Frage stellen"
+      buttonHref="/fragen-stellen"
+      backgroundImage="/images/cta/rectangle-12.png"
+      variant="filled"
+    />
+
+    <Features title="Bewertungen" description="Hier finden Sie die neuesten Rezensionen.">
+      <ProductGrid items={reviews} />
+    </Features>
+
+    <Features title="Beliebte Produkte" description="Produkte, die wir empfehlen.">
+      <ProductGrid items={popularProducts} />
+    </Features>
+
+    <CTA
+      title="Stellen Sie eine Frage."
+      backgroundImage="/images/cta/rectangle-18.png"
+    >
+      <p class="final-cta__text">
+        Ist die Antwort auf Ihre Frage hier noch nicht aufgeführt? Dann können Sie Ihre Frage
+        hier ganz einfach selbst stellen. Unsere Nutzer werden Ihnen dann Antworten geben.
+      </p>
+      <a href="/fragen-stellen" class="btn btn--outline final-cta__btn">Eine Frage stellen</a>
+    </CTA>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .final-cta__text {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--color-text-muted);
+    max-width: 520px;
+    margin-top: 0.5rem;
+  }
+
+  .final-cta__btn {
+    margin-top: 1.5rem;
+  }
+</style>

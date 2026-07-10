@@ -1,0 +1,189 @@
+---
+import { categories } from '../data/products';
+
+const icons: Record<string, string> = {
+  'hair-removal': `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M14 4V11M34 4V11M12 31H36V36C33 36 26 39 26 44H21C21 39 15 36 12 36V31Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 25C17.866 25 21 21.866 21 18C21 14.134 17.866 11 14 11C10.134 11 7 14.134 7 18C7 21.866 10.134 25 14 25Z" stroke="white" stroke-width="2"/><path d="M34 25C37.866 25 41 21.866 41 18C41 14.134 37.866 11 34 11C30.134 11 27 14.134 27 18C27 21.866 30.134 25 34 25Z" stroke="white" stroke-width="2"/><path d="M21 18H27" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>`,
+  toys: `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M35 18L31.12 30.612C30.324 32.878 27.882 38.42 21.001 41C13 44 4.999 40 5 32.077C5 24.154 13 25 17 22C21 19 25 13 25 13" stroke="white" stroke-width="2"/><path d="M36 8L42 6M39.255 24.488C39.495 11.672 37.5 8.5 35 7C32.498 5.5 27.252 4.5 23 7C18.747 9.5 16.967 12.845 16.967 12.845L25.173 12.077L27.725 18.038L34.243 17.216L39.253 24.488H39.255Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  cosplay: `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M9.684 11.499C12.424 15.261 14.074 16.436 16.16 16.804C20.808 16.949 22.224 15.243 22.486 13.757C22.833 11.788 21.409 9.404 17.584 8.73C14.706 8.608 13.161 8.972 11.945 9.509C10.019 10.76 9.75 11.125 9.684 11.499Z" fill="white" stroke="white" stroke-width="0.2"/><path d="M44.523 1.299C45.953 0.943 47.2 -0.1 47.2 0.8C48.1 5.087 43.631 14.852 32.8 22.5C22.938 25.7 15.2 22.5 15.2 22.5C11.303 22.5 4.369 14.889 4.649 13.648C6.693 15.197 13.021 20.7 15.2 20.7C24 23.9 32.8 20.7 41.895 14.249C45.895 6.03 46.233 2.23 45.717 2.648L37.269 2.457C33.97 1.5 31.2 1.5 24 6.297C19.387 3.3 16.8 1.5 7.2 3.1C3.447 3.613 5 4.9 7.2 4.9C9.531 4.551 11.231 4.185 24 6.297Z" fill="white" stroke="white" stroke-width="0.2"/></svg>`,
+  lgbtq: `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M29.516 17.5C35.039 27.066 34.476 37.73 28.258 41.32C22.04 44.91 12.523 40.067 7 30.5C1.477 20.933 2.04 10.27 8.258 6.68C14.476 3.09 23.994 7.934 29.516 17.5Z" stroke="white" stroke-width="2"/><path d="M18.258 17.5C12.735 27.066 13.298 37.73 19.516 41.32C25.734 44.91 35.252 40.066 40.775 30.5C46.298 20.934 45.735 10.27 39.516 6.68C33.3 3.09 23.781 7.934 18.258 17.5Z" stroke="white" stroke-width="2"/></svg>`,
+  dating: `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M24 26C22 27.09 19 29.5 19 33C19 36.5 29 35.5 29 39C29 42.5 18 44 18 44M17.333 4C13.333 4 12 7.156 12 11.05C12 18.1 19.8 24.51 24 26C28.2 24.51 36 18.1 36 11.05C36 7.156 34.312 4 30.667 4C28.434 4 25.194 7.077 24 8.889C22.806 7.077 19.566 4 17.333 4Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  more: `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M10 14C13.314 14 14 11.061 14 10C14 8.939 13.314 6 10 6C6.686 6 6 8.939 6 10C6 11.061 6.686 14 10 14ZM24 14C27.314 14 28 11.061 28 10C28 8.939 27.314 6 24 6C20.686 6 20 8.939 20 10C20 11.061 20.686 14 24 14ZM38 14C41.314 14 42 11.061 42 10C42 8.939 41.314 6 38 6C34.686 6 34 8.939 34 10C34 11.061 34.686 14 38 14ZM10 28C13.314 28 14 25.061 14 24C14 22.939 13.314 20 10 20C6.686 20 6 22.939 6 24C6 25.061 6.686 28 10 28ZM24 28C27.314 28 28 25.061 28 24C28 22.939 27.314 20 24 20C20.686 20 20 22.939 20 24C20 25.061 20.686 28 24 28ZM38 28C41.314 28 42 25.061 42 24C42 22.939 41.314 20 38 20C34.686 20 34 22.939 34 24C34 25.061 34.686 28 38 28ZM10 42C13.314 42 14 39.061 14 38C14 36.939 13.314 34 10 34C6.686 34 6 36.939 6 38C6 39.061 6.686 42 10 42ZM24 42C27.314 42 28 39.061 28 38C28 36.939 27.314 34 24 34C20.686 34 20 36.939 20 38C20 39.061 20.686 42 24 42ZM38 42C41.314 42 42 39.061 42 38C42 36.939 41.314 34 38 34C34.686 34 34 36.939 34 38C34 39.061 34.686 42 38 42Z" stroke="white" stroke-width="2"/></svg>`,
+};
+---
+
+<section class="hero">
+  <div class="hero__bg">
+    <img
+      src="/images/hero/rectangle-6.jpg"
+      alt=""
+      width="1920"
+      height="1080"
+      loading="eager"
+      fetchpriority="high"
+      class="hero__bg-image"
+    />
+    <div class="hero__overlay"></div>
+  </div>
+
+  <div class="container hero__content">
+    <div class="hero__text">
+      <h1 class="hero__title">Fragen für das Schlafzimmer</h1>
+      <p class="hero__subtitle">Die Website für alle Fragen zum Thema Sex.</p>
+      <a href="/fragen-stellen" class="btn btn--outline hero__cta">Eine Frage stellen</a>
+    </div>
+  </div>
+
+  <div class="container hero__categories">
+    <div class="category-grid">
+      {
+        categories.map((category) => (
+          <a href={category.href} class="category-card" style={`--card-bg: url('${category.image}')`}>
+            <span class="category-card__icon" set:html={icons[category.icon]} />
+            <h3 class="category-card__title">{category.title}</h3>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    margin-top: -72px;
+    padding-top: calc(72px + clamp(8rem, 18vw, 14.5rem));
+    padding-bottom: clamp(3rem, 8vw, 5rem);
+  }
+
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .hero__bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero__overlay {
+    position: absolute;
+    inset: 0;
+    background-color: var(--color-bg);
+    opacity: 0.72;
+  }
+
+  .hero__content,
+  .hero__categories {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero__text {
+    max-width: 640px;
+    padding-bottom: clamp(3rem, 10vw, 8rem);
+  }
+
+  .hero__title {
+    font-size: clamp(2.25rem, 6vw, 4rem);
+    color: var(--color-secondary);
+    margin-bottom: 0.75rem;
+  }
+
+  .hero__subtitle {
+    font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+    font-weight: 700;
+    color: var(--color-secondary);
+    margin-bottom: 1rem;
+  }
+
+  .hero__cta {
+    margin-top: 1rem;
+  }
+
+  .hero__categories {
+    margin-top: clamp(-8rem, -12vw, -11.5rem);
+    position: relative;
+    z-index: 2;
+    padding-bottom: 3.875rem;
+  }
+
+  .category-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1.25rem;
+  }
+
+  .category-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 120px;
+    padding: 0.625rem 1.5rem;
+    border-radius: var(--card-radius);
+    background-image: var(--card-bg);
+    background-size: cover;
+    background-position: center;
+    transition:
+      transform var(--transition),
+      box-shadow var(--transition);
+  }
+
+  .category-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+    color: var(--color-secondary);
+  }
+
+  .category-card__icon {
+    display: flex;
+    line-height: 0;
+  }
+
+  .category-card__icon :global(svg) {
+    width: 48px;
+    height: 48px;
+  }
+
+  .category-card__title {
+    font-family: var(--font-accent);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-secondary);
+  }
+
+  @media (max-width: 1023px) {
+    .category-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .hero__categories {
+      margin-top: -7.5rem;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .hero {
+      padding-bottom: clamp(18rem, 50vw, 30rem);
+    }
+
+    .hero__categories {
+      margin-top: -26rem;
+    }
+
+    .category-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.625rem;
+    }
+
+    .category-card {
+      min-height: 100px;
+      padding: 0.625rem 1rem;
+    }
+  }
+</style>

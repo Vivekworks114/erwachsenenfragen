@@ -1,0 +1,275 @@
+---
+import { mainNavigation } from '../data/navigation';
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="header">
+  <div class="container header__inner">
+    <a href="/" class="header__logo" aria-label="AdultVragen.de Startseite">
+      <img src="/images/brand/logo.svg" alt="AdultVragen.de" width="257" height="29" />
+    </a>
+
+    <button
+      class="header__toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="main-navigation"
+      aria-label="Menü öffnen"
+    >
+      <span class="header__toggle-bar"></span>
+      <span class="header__toggle-bar"></span>
+      <span class="header__toggle-bar"></span>
+    </button>
+
+    <nav id="main-navigation" class="nav" aria-label="Hauptnavigation">
+      <ul class="nav__list">
+        {
+          mainNavigation.map((item) => (
+            <li class:list={['nav__item', item.children && 'nav__item--has-children']}>
+              {item.children ? (
+                <details class="nav__dropdown">
+                  <summary class="nav__link">
+                    <a href={item.href}>{item.label}</a>
+                  </summary>
+                  <ul class="nav__submenu">
+                    {item.children.map((child) => (
+                      <li>
+                        <a
+                          href={child.href}
+                          class:list={['nav__sublink', currentPath === child.href && 'is-active']}
+                        >
+                          {child.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </details>
+              ) : (
+                <a
+                  href={item.href}
+                  class:list={['nav__link', currentPath === item.href && 'is-active']}
+                >
+                  {item.label}
+                </a>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <a href="/fragen-stellen" class="btn btn--primary header__cta">Stelle eine Frage</a>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector('.header__toggle');
+  const nav = document.querySelector('.nav');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = nav?.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    toggle.setAttribute('aria-label', isOpen ? 'Menü schließen' : 'Menü öffnen');
+    document.body.classList.toggle('nav-open', Boolean(isOpen));
+  });
+
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    if (!target.closest('.header') && nav?.classList.contains('is-open')) {
+      nav.classList.remove('is-open');
+      toggle?.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('nav-open');
+    }
+  });
+</script>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: var(--color-bg);
+    border-bottom: 1px solid rgba(70, 75, 88, 0.35);
+    padding-block: 0.3125rem;
+  }
+
+  .header__inner {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1.5rem;
+    min-height: 72px;
+  }
+
+  .header__logo img {
+    width: min(257px, 42vw);
+    height: auto;
+  }
+
+  .header__toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    width: 44px;
+    height: 44px;
+    padding: 0.5rem;
+    margin-left: auto;
+  }
+
+  .header__toggle-bar {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--color-secondary);
+    transition: transform var(--transition), opacity var(--transition);
+  }
+
+  .nav {
+    justify-self: end;
+  }
+
+  .nav__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.25rem 0;
+  }
+
+  .nav__link,
+  .nav__dropdown summary {
+    display: block;
+    padding: 0.9375rem 1rem;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--color-text);
+    cursor: pointer;
+    list-style: none;
+    transition: color var(--transition);
+  }
+
+  .nav__dropdown summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .nav__link:hover,
+  .nav__link.is-active,
+  .nav__dropdown[open] summary,
+  .nav__sublink:hover {
+    color: var(--color-primary);
+  }
+
+  .nav__dropdown {
+    position: relative;
+  }
+
+  .nav__submenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 220px;
+    padding: 0.5rem 0;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--card-radius);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition:
+      opacity var(--transition),
+      transform var(--transition),
+      visibility var(--transition);
+  }
+
+  .nav__dropdown:hover .nav__submenu,
+  .nav__dropdown[open] .nav__submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .nav__sublink {
+    display: block;
+    padding: 0.75rem 1rem;
+    font-size: 14px;
+    color: var(--color-text);
+    transition: color var(--transition), background-color var(--transition);
+  }
+
+  .nav__sublink:hover {
+    background-color: rgba(203, 0, 0, 0.08);
+  }
+
+  .header__cta {
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 1023px) {
+    .header__inner {
+      grid-template-columns: 1fr auto auto;
+    }
+
+    .header__toggle {
+      display: flex;
+    }
+
+    .nav {
+      position: fixed;
+      inset: 72px 0 auto 0;
+      max-height: calc(100vh - 72px);
+      overflow-y: auto;
+      background: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+      padding: 1rem;
+      transform: translateY(-110%);
+      opacity: 0;
+      visibility: hidden;
+      transition:
+        transform var(--transition),
+        opacity var(--transition),
+        visibility var(--transition);
+      justify-self: stretch;
+    }
+
+    .nav.is-open {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .nav__list {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .nav__link,
+    .nav__dropdown summary {
+      padding: 0.875rem 0.5rem;
+    }
+
+    .nav__submenu {
+      position: static;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      box-shadow: none;
+      border: none;
+      background: transparent;
+      padding-left: 1rem;
+    }
+
+    .header__cta {
+      display: none;
+    }
+  }
+
+  @media (max-width: 599px) {
+    .header__inner {
+      min-height: 64px;
+    }
+  }
+</style>

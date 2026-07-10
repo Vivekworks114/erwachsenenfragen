@@ -1,0 +1,89 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import BlogCard from '../../components/BlogCard.astro';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<BaseLayout
+  title="Blog - AdultVragen.de"
+  description="Die neuesten Artikel und Blogs von AdultVragen.de zu verschiedenen Themen."
+>
+  <Header />
+  <main id="content">
+    <section class="page-hero section--surface">
+      <div class="container">
+        <h1 class="page-hero__title">Blog</h1>
+        <p class="page-hero__subtitle">
+          Entdecken Sie die neuesten Artikel unserer Redakteure in verschiedenen Kategorien.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="blog-grid">
+          {posts.map((post, index) => (
+            <BlogCard entry={post} featured={index === 0} />
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding-block: clamp(3rem, 8vw, 5rem) clamp(2rem, 5vw, 3rem);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .page-hero__title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .page-hero__subtitle {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+    max-width: 600px;
+  }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .blog-grid :global(.blog-card:first-child) {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+  }
+
+  .blog-grid :global(.blog-card:first-child .blog-card__image-link) {
+    aspect-ratio: 16 / 9;
+  }
+
+  @media (max-width: 1023px) {
+    .blog-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .blog-grid :global(.blog-card:first-child) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 599px) {
+    .blog-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

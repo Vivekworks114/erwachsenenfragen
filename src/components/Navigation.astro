@@ -1,0 +1,145 @@
+---
+import { mainNavigation } from '../data/navigation';
+
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = '' } = Astro.props;
+---
+
+<nav id="main-navigation" class="nav" aria-label="Hauptnavigation">
+  <ul class="nav__list">
+    {
+      mainNavigation.map((item) => (
+        <li class:list={['nav__item', item.children && 'nav__item--has-children']}>
+          {item.children ? (
+            <details class="nav__dropdown">
+              <summary class="nav__link">
+                <a href={item.href}>{item.label}</a>
+              </summary>
+              <ul class="nav__submenu">
+                {item.children.map((child) => (
+                  <li>
+                    <a
+                      href={child.href}
+                      class:list={['nav__sublink', currentPath === child.href && 'is-active']}
+                    >
+                      {child.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          ) : (
+            <a
+              href={item.href}
+              class:list={['nav__link', currentPath === item.href && 'is-active']}
+            >
+              {item.label}
+            </a>
+          )}
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<style>
+  .nav__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.25rem 0;
+  }
+
+  .nav__link,
+  .nav__dropdown summary {
+    display: block;
+    padding: 0.9375rem 1rem;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--color-text);
+    cursor: pointer;
+    list-style: none;
+    transition: color var(--transition);
+  }
+
+  .nav__dropdown summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .nav__link:hover,
+  .nav__link.is-active,
+  .nav__dropdown[open] summary,
+  .nav__sublink:hover {
+    color: var(--color-primary);
+  }
+
+  .nav__dropdown {
+    position: relative;
+  }
+
+  .nav__submenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 220px;
+    padding: 0.5rem 0;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--card-radius);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition:
+      opacity var(--transition),
+      transform var(--transition),
+      visibility var(--transition);
+  }
+
+  .nav__dropdown:hover .nav__submenu,
+  .nav__dropdown[open] .nav__submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .nav__sublink {
+    display: block;
+    padding: 0.75rem 1rem;
+    font-size: 14px;
+    color: var(--color-text);
+    transition: color var(--transition), background-color var(--transition);
+  }
+
+  .nav__sublink:hover {
+    background-color: rgba(203, 0, 0, 0.08);
+  }
+
+  @media (max-width: 1023px) {
+    .nav__list {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .nav__link,
+    .nav__dropdown summary {
+      padding: 0.875rem 0.5rem;
+    }
+
+    .nav__submenu {
+      position: static;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      box-shadow: none;
+      border: none;
+      background: transparent;
+      padding-left: 1rem;
+    }
+  }
+</style>

@@ -1,0 +1,20 @@
+---
+import Services from './Services.astro';
+import type { Product } from '../data/products';
+
+interface Props {
+  title?: string;
+  description?: string;
+  items: Product[];
+  showAllHref?: string;
+}
+
+const {
+  title = 'Bewertungen',
+  description = 'Hier finden Sie die neuesten Rezensionen.',
+  items,
+  showAllHref,
+} = Astro.props;
+---
+
+<Services title={title} description={description} items={items} showAllHref={showAllHref} />
