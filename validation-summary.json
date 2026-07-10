@@ -1,0 +1,1120 @@
+{
+  "total": 69,
+  "passed": 3,
+  "failed": 66,
+  "results": [
+    {
+      "route": "/",
+      "localStatus": 200,
+      "liveStatus": 200,
+      "localTitle": "DuurzameBedrijvengids.nl – Vind lokale bedrijven in NL",
+      "liveTitle": "Fragen von Erwachsenen - AdultVragen.de",
+      "localTextLength": 3776,
+      "liveTextLength": 2743,
+      "contentRatio": 1.38,
+      "brokenImages": 0,
+      "issues": [],
+      "ok": true
+    },
+    {
+      "route": "/anmeldung/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "Anmelden bei - AdultVragen.de",
+      "localTextLength": 47,
+      "liveTextLength": 2887,
+      "contentRatio": 0.02,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short",
+        "Content ratio low (0.02)"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-4k-beamer/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST 4k Beamer im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 53,
+      "liveTextLength": 16966,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-abdeckstift/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Abdeckstift im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 55,
+      "liveTextLength": 17005,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-aroma-diffusor/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Aroma-Diffusor im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 58,
+      "liveTextLength": 19886,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-badeschaum/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Badeschaum im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 54,
+      "liveTextLength": 19347,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-bartbalsam/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Bartbalsam im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 54,
+      "liveTextLength": 19216,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-beistelltisch/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Beistelltisch im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 57,
+      "liveTextLength": 17518,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-betttisch/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Betttisch im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 53,
+      "liveTextLength": 19256,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-damenrasierer/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Damenrasierer im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 57,
+      "liveTextLength": 17868,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-duschschaum/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Duschschaum im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 55,
+      "liveTextLength": 13043,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-entgiftungstee/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Entgiftungstee im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 58,
+      "liveTextLength": 20636,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-entwickler/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Entwickler im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 54,
+      "liveTextLength": 15433,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-epilierer/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Epilierer im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 53,
+      "liveTextLength": 17546,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-fotodrucker-fuer-10-x-15-cm/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Fotodrucker f&uuml;r 10 X 15 Cm im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 71,
+      "liveTextLength": 20358,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-foundation-pinsel/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Foundation-Pinsel im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 61,
+      "liveTextLength": 15927,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-gesichtsepilierer/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Gesichtsepilierer im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 61,
+      "liveTextLength": 19262,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-gesichtsreiniger/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Gesichtsreiniger im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 60,
+      "liveTextLength": 19249,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-haengesessel/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST H&auml;ngesessel im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 56,
+      "liveTextLength": 17508,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-kleiderschrank/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Kleiderschrank im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 58,
+      "liveTextLength": 18269,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-lippenbalsam/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Lippenbalsam im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 56,
+      "liveTextLength": 18041,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-lippenstift/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Lippenstift im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 55,
+      "liveTextLength": 17623,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-lockenstab/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Lockenstab im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 54,
+      "liveTextLength": 17180,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-luftbefeuchter/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Luftbefeuchter im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 58,
+      "liveTextLength": 20883,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-luftentfeuchter/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Luftentfeuchter im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 59,
+      "liveTextLength": 18262,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-luftreiniger/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Luftreiniger im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 56,
+      "liveTextLength": 18974,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-make-up-schwamm/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Make up Schwamm im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 59,
+      "liveTextLength": 20197,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-matratzenbezug/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Matratzenbezug im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 58,
+      "liveTextLength": 17422,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-matratzenkeil/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Matratzenkeil im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 57,
+      "liveTextLength": 19851,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-matratzenschoner/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Matratzenschoner im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 60,
+      "liveTextLength": 20189,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-pouf/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Pouf im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 48,
+      "liveTextLength": 17211,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-rasierapparat/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Rasierapparat im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 57,
+      "liveTextLength": 20742,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-rasierpinsel/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Rasierpinsel im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 56,
+      "liveTextLength": 16881,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-rasierspiegel/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Rasierspiegel im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 57,
+      "liveTextLength": 19002,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-satin-kopfkissenbezug/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Satin-Kopfkissenbezug im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 65,
+      "liveTextLength": 20875,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-selbstbraeuner/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Selbstbr&auml;uner im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 58,
+      "liveTextLength": 17333,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-sitzsack/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Sitzsack im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 52,
+      "liveTextLength": 17306,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-smart-tv-32-zoll/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Smart Tv 32 Zoll im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 60,
+      "liveTextLength": 18575,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-smart-tv-40-zoll/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Smart Tv 40 Zoll im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 60,
+      "liveTextLength": 17785,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-smart-tv-50-zoll/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Smart Tv 50 Zoll im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 60,
+      "liveTextLength": 20164,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-smart-tv-55-zoll/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Smart Tv 55 Zoll im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 60,
+      "liveTextLength": 19137,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-smart-tv-65-zoll/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Smart Tv 65 Zoll im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 60,
+      "liveTextLength": 18165,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-ventilator/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Ventilator im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 54,
+      "liveTextLength": 18727,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-volumenpuder/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Volumenpuder im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 56,
+      "liveTextLength": 15163,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-weihrauch/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Weihrauch im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 53,
+      "liveTextLength": 16145,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/beste-whirlpool-aufblasbar/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST Whirlpool Aufblasbar  im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 64,
+      "liveTextLength": 19421,
+      "contentRatio": 0,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/bettwaesche-und-moebel/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "Bettw&auml;sche und M&ouml;bel - erwachsenenfragen.de",
+      "localTextLength": 60,
+      "liveTextLength": 2137,
+      "contentRatio": 0.03,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short",
+        "Content ratio low (0.03)"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/blog/",
+      "localStatus": 200,
+      "liveStatus": 200,
+      "localTitle": "Blog | Duurzamebedrijvengids.nl",
+      "liveTitle": "Blog - erwachsenenfragen.de",
+      "localTextLength": 1730,
+      "liveTextLength": 3534,
+      "contentRatio": 0.49,
+      "brokenImages": 0,
+      "issues": [],
+      "ok": true
+    },
+    {
+      "route": "/de-verschillende-formaten-die-externe-dvd-branders-kunnen-branden/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "De verschillende formaten die externe dvd-branders kunnen branden - erwachsenenfragen.de",
+      "localTextLength": 103,
+      "liveTextLength": 6731,
+      "contentRatio": 0.02,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Content ratio low (0.02)"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/de-werking-van-snelladers-en-hun-technologieen/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "De werking van snelladers en hun technologie&euml;n - erwachsenenfragen.de",
+      "localTextLength": 84,
+      "liveTextLength": 6132,
+      "contentRatio": 0.01,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Content ratio low (0.01)"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/echtzeit-notfallmeldungen-in-deventer/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "Echtzeit-Notfallmeldungen in Deventer: Ein Einblick in das 112-Meldesystem - erwachsenenfragen.de",
+      "localTextLength": 75,
+      "liveTextLength": 5835,
+      "contentRatio": 0.01,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short",
+        "Content ratio low (0.01)"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/elektronische-geraete/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "Elektronische Ger&auml;te - erwachsenenfragen.de",
+      "localTextLength": 59,
+      "liveTextLength": 2084,
+      "contentRatio": 0.03,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short",
+        "Content ratio low (0.03)"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/fragen-anzeigen/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "Fragen anzeigen - erwachsenenfragen.de",
+      "localTextLength": 53,
+      "liveTextLength": 1817,
+      "contentRatio": 0.03,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short",
+        "Content ratio low (0.03)"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/fragen-stellen/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "Stellen Sie Ihre Frage - AdultVragen.de",
+      "localTextLength": 52,
+      "liveTextLength": 1923,
+      "contentRatio": 0.03,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short",
+        "Content ratio low (0.03)"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/gebruikers/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "Ihr Profil ansehen - AdultVragen.de",
+      "localTextLength": 48,
+      "liveTextLength": 1625,
+      "contentRatio": 0.03,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short",
+        "Content ratio low (0.03)"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/geheimnisse-fuer-ein-umweltfreundlicheres-unternehmen/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "Geheimnisse f&uuml;r ein umweltfreundlicheres Unternehmen - erwachsenenfragen.de",
+      "localTextLength": 91,
+      "liveTextLength": 5117,
+      "contentRatio": 0.02,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Content ratio low (0.02)"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/gesichtspflege-und-make-up/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "Gesichtspflege und Make-up - erwachsenenfragen.de",
+      "localTextLength": 64,
+      "liveTextLength": 2231,
+      "contentRatio": 0.03,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short",
+        "Content ratio low (0.03)"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/haarpflege/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "Haarpflege - erwachsenenfragen.de",
+      "localTextLength": 48,
+      "liveTextLength": 1962,
+      "contentRatio": 0.02,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short",
+        "Content ratio low (0.02)"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/heimzubehoer-und-sicherheit/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "Heimzubeh&ouml;r und Sicherheit - erwachsenenfragen.de",
+      "localTextLength": 65,
+      "liveTextLength": 2068,
+      "contentRatio": 0.03,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short",
+        "Content ratio low (0.03)"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/het-bedrijfsregister-een-essentieel-instrument-voor-transparantie-en-toegankelijkheid/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "Het bedrijfsregister: Een essentieel instrument voor transparantie en toegankelijkheid - erwachsenenfragen.de",
+      "localTextLength": 123,
+      "liveTextLength": 7013,
+      "contentRatio": 0.02,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Content ratio low (0.02)"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/impressum/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "Impressum - erwachsenenfragen.de",
+      "localTextLength": 47,
+      "liveTextLength": 2668,
+      "contentRatio": 0.02,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short",
+        "Content ratio low (0.02)"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/koerperpflege/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "K&ouml;rperpflege - erwachsenenfragen.de",
+      "localTextLength": 51,
+      "liveTextLength": 2016,
+      "contentRatio": 0.03,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short",
+        "Content ratio low (0.03)"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/kontakt/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "Kontaktieren Sie uns - AdultVragen.de",
+      "localTextLength": 45,
+      "liveTextLength": 2082,
+      "contentRatio": 0.02,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short",
+        "Content ratio low (0.02)"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/linkedin-kontakte-guenstig-kaufen/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "LinkedIn Kontakte g&uuml;nstig kaufen - erwachsenenfragen.de",
+      "localTextLength": 71,
+      "liveTextLength": 5151,
+      "contentRatio": 0.01,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short",
+        "Content ratio low (0.01)"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/luftaufbereitung/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "Luftaufbereitung - erwachsenenfragen.de",
+      "localTextLength": 54,
+      "liveTextLength": 2075,
+      "contentRatio": 0.03,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short",
+        "Content ratio low (0.03)"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/sitemap/",
+      "localStatus": 200,
+      "liveStatus": 200,
+      "localTitle": "Sitemap - duurzamebedrijvengids.nl",
+      "liveTitle": "Sitemap - erwachsenenfragen.de",
+      "localTextLength": 47791,
+      "liveTextLength": 3408,
+      "contentRatio": 14.02,
+      "brokenImages": 0,
+      "issues": [],
+      "ok": true
+    },
+    {
+      "route": "/uber-uns/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "Erfahren Sie mehr &uuml;ber uns - AdultVragen.de",
+      "localTextLength": 46,
+      "liveTextLength": 3121,
+      "contentRatio": 0.01,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short",
+        "Content ratio low (0.01)"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/youtube-likes-online-kaufen/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "YouTube-Likes online kaufen - erwachsenenfragen.de",
+      "localTextLength": 65,
+      "liveTextLength": 5956,
+      "contentRatio": 0.01,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short",
+        "Content ratio low (0.01)"
+      ],
+      "ok": false
+    },
+    {
+      "route": "/zb_mp_product/",
+      "localStatus": 404,
+      "liveStatus": 200,
+      "localTitle": "404: Not Found",
+      "liveTitle": "BEST [zb_mp_ev] im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "localTextLength": 51,
+      "liveTextLength": 7093,
+      "contentRatio": 0.01,
+      "brokenImages": 0,
+      "issues": [
+        "Local status 404",
+        "Local content too short",
+        "Content ratio low (0.01)"
+      ],
+      "ok": false
+    }
+  ]
+}

@@ -1,0 +1,540 @@
+{
+  "crawled": 59,
+  "errors": 0,
+  "reviews": 44,
+  "pages": 15,
+  "results": [
+    {
+      "path": "/anmeldung",
+      "slug": "anmeldung",
+      "title": "Anmelden bei",
+      "description": "Hier können Sie sich einloggen, um Ihr Konto auf AdultVragen.de zu besuchen. Hier finden Sie alle Ihre Fragen und Antworten.",
+      "contentLength": 15285,
+      "pageType": "page",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-4k-beamer",
+      "slug": "beste-4k-beamer",
+      "title": "BEST 4k Beamer im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN 4k Beamer von 2024? Adultquestions teilt die TOP 10 der am besten getesteten 4k Beamer aus diesem Jahr.",
+      "contentLength": 30783,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-abdeckstift",
+      "slug": "beste-abdeckstift",
+      "title": "BEST Abdeckstift im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Abdeckstift von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Abdeckstift aus diesem Jahr.",
+      "contentLength": 30761,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-aroma-diffusor",
+      "slug": "beste-aroma-diffusor",
+      "title": "BEST Aroma-Diffusor im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Aroma-Diffusor von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Aroma-Diffusor aus diesem Jahr.",
+      "contentLength": 33646,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-badeschaum",
+      "slug": "beste-badeschaum",
+      "title": "BEST Badeschaum im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Badeschaum von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Badeschaum aus diesem Jahr.",
+      "contentLength": 33141,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-bartbalsam",
+      "slug": "beste-bartbalsam",
+      "title": "BEST Bartbalsam im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Bartbalsam von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Bartbalsam aus diesem Jahr.",
+      "contentLength": 32726,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-beistelltisch",
+      "slug": "beste-beistelltisch",
+      "title": "BEST Beistelltisch im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Beistelltisch von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Beistelltisch aus diesem Jahr.",
+      "contentLength": 31297,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-betttisch",
+      "slug": "beste-betttisch",
+      "title": "BEST Betttisch im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Betttisch von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Betttisch aus diesem Jahr.",
+      "contentLength": 33037,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-damenrasierer",
+      "slug": "beste-damenrasierer",
+      "title": "BEST Damenrasierer im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Damenrasierer von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Damenrasierer aus diesem Jahr.",
+      "contentLength": 31647,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-duschschaum",
+      "slug": "beste-duschschaum",
+      "title": "BEST Duschschaum im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Duschschaum von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Duschschaum aus diesem Jahr.",
+      "contentLength": 26824,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-entgiftungstee",
+      "slug": "beste-entgiftungstee",
+      "title": "BEST Entgiftungstee im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Entgiftungstee von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Entgiftungstee aus diesem Jahr.",
+      "contentLength": 34429,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-entwickler",
+      "slug": "beste-entwickler",
+      "title": "BEST Entwickler im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Entwickler von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Entwickler aus diesem Jahr.",
+      "contentLength": 29205,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-epilierer",
+      "slug": "beste-epilierer",
+      "title": "BEST Epilierer im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Epilierer von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Epilierer aus diesem Jahr.",
+      "contentLength": 31327,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-fotodrucker-fuer-10-x-15-cm",
+      "slug": "beste-fotodrucker-fuer-10-x-15-cm",
+      "title": "BEST Fotodrucker für 10 X 15 Cm im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Fotodrucker für 10 X 15 Cm von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Fotodrucker für 10 X 15 Cm aus diesem Jahr.",
+      "contentLength": 34126,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-foundation-pinsel",
+      "slug": "beste-foundation-pinsel",
+      "title": "BEST Foundation-Pinsel im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Foundation-Pinsel von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Foundation-Pinsel aus diesem Jahr.",
+      "contentLength": 29695,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-gesichtsepilierer",
+      "slug": "beste-gesichtsepilierer",
+      "title": "BEST Gesichtsepilierer im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Gesichtsepilierer von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Gesichtsepilierer aus diesem Jahr.",
+      "contentLength": 33039,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-gesichtsreiniger",
+      "slug": "beste-gesichtsreiniger",
+      "title": "BEST Gesichtsreiniger im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Gesichtsreiniger von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Gesichtsreiniger aus diesem Jahr.",
+      "contentLength": 32956,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-haengesessel",
+      "slug": "beste-haengesessel",
+      "title": "BEST Hängesessel im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Hängesessel von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Hängesessel aus diesem Jahr.",
+      "contentLength": 31275,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-kleiderschrank",
+      "slug": "beste-kleiderschrank",
+      "title": "BEST Kleiderschrank im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Kleiderschrank von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Kleiderschrank aus diesem Jahr.",
+      "contentLength": 32013,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-lippenbalsam",
+      "slug": "beste-lippenbalsam",
+      "title": "BEST Lippenbalsam im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Lippenbalsam von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Lippenbalsam aus diesem Jahr.",
+      "contentLength": 31800,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-lippenstift",
+      "slug": "beste-lippenstift",
+      "title": "BEST Lippenstift im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Lippenstift von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Lippenstift aus diesem Jahr.",
+      "contentLength": 31394,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-lockenstab",
+      "slug": "beste-lockenstab",
+      "title": "BEST Lockenstab im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Lockenstab von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Lockenstab aus diesem Jahr.",
+      "contentLength": 30683,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-luftbefeuchter",
+      "slug": "beste-luftbefeuchter",
+      "title": "BEST Luftbefeuchter im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Luftbefeuchter von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Luftbefeuchter aus diesem Jahr.",
+      "contentLength": 34651,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-luftentfeuchter",
+      "slug": "beste-luftentfeuchter",
+      "title": "BEST Luftentfeuchter im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Luftentfeuchter von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Luftentfeuchter aus diesem Jahr.",
+      "contentLength": 32025,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-luftreiniger",
+      "slug": "beste-luftreiniger",
+      "title": "BEST Luftreiniger im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Luftreiniger von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Luftreiniger aus diesem Jahr.",
+      "contentLength": 32754,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-make-up-schwamm",
+      "slug": "beste-make-up-schwamm",
+      "title": "BEST Make up Schwamm im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Make up Schwamm von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Make up Schwamm aus diesem Jahr.",
+      "contentLength": 33984,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-matratzenbezug",
+      "slug": "beste-matratzenbezug",
+      "title": "BEST Matratzenbezug im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Matratzenbezug von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Matratzenbezug aus diesem Jahr.",
+      "contentLength": 31200,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-matratzenkeil",
+      "slug": "beste-matratzenkeil",
+      "title": "BEST Matratzenkeil im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Matratzenkeil von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Matratzenkeil aus diesem Jahr.",
+      "contentLength": 33634,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-matratzenschoner",
+      "slug": "beste-matratzenschoner",
+      "title": "BEST Matratzenschoner im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Matratzenschoner von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Matratzenschoner aus diesem Jahr.",
+      "contentLength": 33999,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-pouf",
+      "slug": "beste-pouf",
+      "title": "BEST Pouf im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Pouf von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Pouf aus diesem Jahr.",
+      "contentLength": 30981,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-rasierapparat",
+      "slug": "beste-rasierapparat",
+      "title": "BEST Rasierapparat im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Rasierapparat von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Rasierapparat aus diesem Jahr.",
+      "contentLength": 34520,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-rasierpinsel",
+      "slug": "beste-rasierpinsel",
+      "title": "BEST Rasierpinsel im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Rasierpinsel von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Rasierpinsel aus diesem Jahr.",
+      "contentLength": 30648,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-rasierspiegel",
+      "slug": "beste-rasierspiegel",
+      "title": "BEST Rasierspiegel im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Rasierspiegel von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Rasierspiegel aus diesem Jahr.",
+      "contentLength": 32775,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-satin-kopfkissenbezug",
+      "slug": "beste-satin-kopfkissenbezug",
+      "title": "BEST Satin-Kopfkissenbezug im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Satin-Kopfkissenbezug von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Satin-Kopfkissenbezug aus diesem Jahr.",
+      "contentLength": 34644,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-selbstbraeuner",
+      "slug": "beste-selbstbraeuner",
+      "title": "BEST Selbstbräuner im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Selbstbräuner von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Selbstbräuner aus diesem Jahr.",
+      "contentLength": 31107,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-sitzsack",
+      "slug": "beste-sitzsack",
+      "title": "BEST Sitzsack im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Sitzsack von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Sitzsack aus diesem Jahr.",
+      "contentLength": 31081,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-smart-tv-32-zoll",
+      "slug": "beste-smart-tv-32-zoll",
+      "title": "BEST Smart Tv 32 Zoll im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Smart Tv 32 Zoll von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Smart Tv 32 Zoll aus diesem Jahr.",
+      "contentLength": 32332,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-smart-tv-40-zoll",
+      "slug": "beste-smart-tv-40-zoll",
+      "title": "BEST Smart Tv 40 Zoll im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Smart Tv 40 Zoll von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Smart Tv 40 Zoll aus diesem Jahr.",
+      "contentLength": 31534,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-smart-tv-50-zoll",
+      "slug": "beste-smart-tv-50-zoll",
+      "title": "BEST Smart Tv 50 Zoll im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Smart Tv 50 Zoll von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Smart Tv 50 Zoll aus diesem Jahr.",
+      "contentLength": 33943,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-smart-tv-55-zoll",
+      "slug": "beste-smart-tv-55-zoll",
+      "title": "BEST Smart Tv 55 Zoll im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Smart Tv 55 Zoll von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Smart Tv 55 Zoll aus diesem Jahr.",
+      "contentLength": 32955,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-smart-tv-65-zoll",
+      "slug": "beste-smart-tv-65-zoll",
+      "title": "BEST Smart Tv 65 Zoll im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Smart Tv 65 Zoll von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Smart Tv 65 Zoll aus diesem Jahr.",
+      "contentLength": 31989,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-ventilator",
+      "slug": "beste-ventilator",
+      "title": "BEST Ventilator im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Ventilator von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Ventilator aus diesem Jahr.",
+      "contentLength": 32509,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-volumenpuder",
+      "slug": "beste-volumenpuder",
+      "title": "BEST Volumenpuder im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Volumenpuder von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Volumenpuder aus diesem Jahr.",
+      "contentLength": 28661,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-weihrauch",
+      "slug": "beste-weihrauch",
+      "title": "BEST Weihrauch im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Weihrauch von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Weihrauch aus diesem Jahr.",
+      "contentLength": 29925,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/beste-whirlpool-aufblasbar",
+      "slug": "beste-whirlpool-aufblasbar",
+      "title": "BEST Whirlpool Aufblasbar  im 2024 verglichen: Sehen Sie sich unsere TOP 10 an",
+      "description": "Welches sind die 10 BESTEN Whirlpool Aufblasbar  von 2024? Adultquestions teilt die TOP 10 der am besten getesteten Whirlpool Aufblasbar  aus diesem Jahr.",
+      "contentLength": 33230,
+      "pageType": "review",
+      "status": "ok"
+    },
+    {
+      "path": "/bettwaesche-und-moebel",
+      "slug": "bettwaesche-und-moebel",
+      "title": "Bettwäsche und Möbel",
+      "description": "Bettwäsche und Möbel In der Kategorie bettwäsche und möbel finden Sie verschiedene Möbelstücke zur Einrichtung Ihres Zuhauses. Denken Sie an einen Beistelltisch, ein Betttisch, einen Matratzenbezug, e",
+      "contentLength": 2839,
+      "pageType": "page",
+      "status": "ok"
+    },
+    {
+      "path": "/elektronische-geraete",
+      "slug": "elektronische-geraete",
+      "title": "Elektronische Geräte",
+      "description": "Elektronische Geräte In der Kategorie Elektronische Geräte finden Sie verschiedene Elektrogeräte für Freizeit oder Beruf. Denken Sie an eine Babytrage, eine Hundeleine, einen GPS-Tracker, einen Hundef",
+      "contentLength": 2069,
+      "pageType": "page",
+      "status": "ok"
+    },
+    {
+      "path": "/fragen-anzeigen",
+      "slug": "fragen-anzeigen",
+      "title": "Fragen anzeigen",
+      "description": "Fragen Stellen Sie Ihre Frage Haben Sie die Antwort auf Ihre Frage hier noch nicht gefunden? Dann können Sie hier auch ganz einfach Ihre eigene Frage stellen. <footer class=\"elementor elementor-245",
+      "contentLength": 1454,
+      "pageType": "page",
+      "status": "ok"
+    },
+    {
+      "path": "/fragen-stellen",
+      "slug": "fragen-stellen",
+      "title": "Stellen Sie Ihre Frage",
+      "description": "Haben Sie eine Frage und finden Sie die Antwort nicht auf unserer Website? Dann können Sie hier einfach und schnell Ihre Frage stellen.",
+      "contentLength": 1090,
+      "pageType": "page",
+      "status": "ok"
+    },
+    {
+      "path": "/gebruikers",
+      "slug": "gebruikers",
+      "title": "Ihr Profil ansehen",
+      "description": "Sehen Sie hier Ihr Profil auf AdultVragen.de. Hier finden Sie leicht alle Ihre Fragen und Antworten.",
+      "contentLength": 248,
+      "pageType": "page",
+      "status": "ok"
+    },
+    {
+      "path": "/gesichtspflege-und-make-up",
+      "slug": "gesichtspflege-und-make-up",
+      "title": "Gesichtspflege und Make-up",
+      "description": "Gesichtspflege und Make-up In der Kategorie Gesichtspflege und Make-up finden Sie verschiedene Produkte zur Pflege Ihres Gesichts. Denken Sie an einen Abdeckstift, eine Gesichtsepilierer, ein Gesichts",
+      "contentLength": 3212,
+      "pageType": "page",
+      "status": "ok"
+    },
+    {
+      "path": "/haarpflege",
+      "slug": "haarpflege",
+      "title": "Haarpflege",
+      "description": "Haarpflege In der Kategorie Haarpflege finden Sie verschiedene Produkte zur Pflege Ihrer Haare. Denken Sie an einen Bartbalsam, einen Dampfglätter, ein Lockenstab, einen Volumenpuder und vieles mehr. ",
+      "contentLength": 1760,
+      "pageType": "page",
+      "status": "ok"
+    },
+    {
+      "path": "/heimzubehoer-und-sicherheit",
+      "slug": "heimzubehoer-und-sicherheit",
+      "title": "Heimzubehör und Sicherheit",
+      "description": "Heimzubehör und Sicherheit In der Kategorie Wohnaccessoires und Sicherheit finden Sie alle nützlichen Accessoires für Ihr Zuhause und für die Sicherheit. Denken Sie an einen Duschkopf, eine Elektro He",
+      "contentLength": 2043,
+      "pageType": "page",
+      "status": "ok"
+    },
+    {
+      "path": "/impressum",
+      "slug": "impressum",
+      "title": "Impressum",
+      "description": "Impressum Angaben gemäß § 5 TMG Name des Unternehmens / Betreibers ZB SEO LLP Kontakt E-Mail: Contact Vertreten durch Rogier Haftung für Inhalte Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für ei",
+      "contentLength": 2348,
+      "pageType": "page",
+      "status": "ok"
+    },
+    {
+      "path": "/koerperpflege",
+      "slug": "koerperpflege",
+      "title": "Körperpflege",
+      "description": "Körperpflege In der Kategorie Körperpflege finden Sie verschiedene Produkte zur Pflege Ihres Körpers. Denken Sie an einen Badeschaum, ein Entgiftungstee, einen Damenrasierer, einen Duschschaum und vie",
+      "contentLength": 2087,
+      "pageType": "page",
+      "status": "ok"
+    },
+    {
+      "path": "/kontakt",
+      "slug": "kontakt",
+      "title": "Kontaktieren Sie uns",
+      "description": "Sie möchten Kontakt zu unserer Redaktion aufnehmen? Dann können Sie dies ganz einfach über unsere Kontaktseite tun. Unser Team steht Ihnen jeden Tag zur Verfügung!",
+      "contentLength": 3169,
+      "pageType": "page",
+      "status": "ok"
+    },
+    {
+      "path": "/luftaufbereitung",
+      "slug": "luftaufbereitung",
+      "title": "Luftaufbereitung",
+      "description": "Luftaufbereitung In der Kategorie Luftaufbereitung finden Sie verschiedene Produkte zur Aufrechterhaltung der Luftqualität zu Hause oder am Arbeitsplatz. Denken Sie an einen Aroma-Diffusor, eine Luftb",
+      "contentLength": 2017,
+      "pageType": "page",
+      "status": "ok"
+    },
+    {
+      "path": "/sitemap",
+      "slug": "sitemap",
+      "title": "Sitemap",
+      "description": "Sitemap Seiten Anmeldung Bettwäsche und Möbel Blog Elektronische Geräte Fragen anzeigen Fragen stellen Gebruikers Gesichtspflege und Make-up Haarpflege Heimzubehör und Sicherheit Home Impressum Kontak",
+      "contentLength": 7017,
+      "pageType": "page",
+      "status": "ok"
+    },
+    {
+      "path": "/uber-uns",
+      "slug": "uber-uns",
+      "title": "Erfahren Sie mehr über uns",
+      "description": "Möchten Sie mehr über unsere Website erfahren und wissen, wer genau dahinter steckt? Dann werfen Sie einen Blick auf diese Seite. Hier erklären wir, wer wir sind.",
+      "contentLength": 6448,
+      "pageType": "page",
+      "status": "ok"
+    }
+  ],
+  "errorDetails": []
+}

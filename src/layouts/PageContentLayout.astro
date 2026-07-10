@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
+import { getContentHtml, hasContentTitle } from '../lib/content-html';
 
 interface Props {
   entry: CollectionEntry<'pages'>;
@@ -8,6 +9,8 @@ interface Props {
 
 const { entry } = Astro.props;
 const { title, description } = entry.data;
+const contentHtml = getContentHtml(entry);
+const showHero = !hasContentTitle(entry);
 ---
 
 <BaseLayout
@@ -16,17 +19,21 @@ const { title, description } = entry.data;
 >
   <slot name="header" />
   <main id="content">
-    <section class="page-hero section--surface">
-      <div class="container">
-        <h1 class="page-hero__title">{title}</h1>
-        {description && <p class="page-hero__subtitle">{description}</p>}
-      </div>
-    </section>
+    {
+      showHero && (
+        <section class="page-hero section--surface">
+          <div class="container">
+            <h1 class="page-hero__title">{title}</h1>
+            {description && <p class="page-hero__subtitle">{description}</p>}
+          </div>
+        </section>
+      )
+    }
     <section class="section">
       <div class="container page-content prose">
         {
-          entry.data.contentHtml ? (
-            <div class="wp-content" set:html={entry.data.contentHtml} />
+          contentHtml ? (
+            <div class="wp-content" set:html={contentHtml} />
           ) : (
             <slot />
           )

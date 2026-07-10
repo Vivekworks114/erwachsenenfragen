@@ -9,7 +9,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "crawl": "python3 scripts/crawl-live-site.py",
+    "validate": "node scripts/validate-site.mjs --base http://127.0.0.1:4322"
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.2",

@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import BlogPostLayout from '../layouts/BlogPostLayout.astro';
 import PageContentLayout from '../layouts/PageContentLayout.astro';
+import ProductReviewLayout from '../layouts/ProductReviewLayout.astro';
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection('blog');
@@ -27,10 +28,15 @@ export async function getStaticPaths() {
 
   const pagePaths = pageEntries
     .filter((entry) => !staticPageSlugs.has(entry.id))
-    .map((entry) => ({
-      params: { slug: entry.id },
-      props: { type: 'page' as const, entry },
-    }));
+    .map((entry) => {
+      const pageType =
+        entry.data.pageType ||
+        (entry.id.startsWith('beste-') ? 'review' : 'page');
+      return {
+        params: { slug: entry.id },
+        props: { type: pageType as 'page' | 'review', entry },
+      };
+    });
 
   return [...blogPaths, ...pagePaths];
 }
@@ -46,6 +52,12 @@ const { Content } = await render(entry);
       <Content />
       <Footer slot="footer" />
     </BlogPostLayout>
+  ) : type === 'review' ? (
+    <ProductReviewLayout entry={entry}>
+      <Header slot="header" />
+      <Content />
+      <Footer slot="footer" />
+    </ProductReviewLayout>
   ) : (
     <PageContentLayout entry={entry}>
       <Header slot="header" />

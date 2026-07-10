@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
+import { getContentHtml } from '../lib/content-html';
 
 interface Props {
   entry: CollectionEntry<'blog'>;
@@ -9,6 +10,7 @@ interface Props {
 const { entry } = Astro.props;
 const { title, description, pubDate, updatedDate, author, categories, image, imageAlt } =
   entry.data;
+const contentHtml = getContentHtml(entry);
 
 const formattedDate = pubDate.toLocaleDateString('de-DE', {
   year: 'numeric',
@@ -68,8 +70,8 @@ const formattedUpdated = updatedDate?.toLocaleDateString('de-DE', {
 
         <div class="blog-detail__body prose">
           {
-            entry.data.contentHtml ? (
-              <div class="wp-content" set:html={entry.data.contentHtml} />
+            contentHtml ? (
+              <div class="wp-content" set:html={contentHtml} />
             ) : (
               <slot />
             )
