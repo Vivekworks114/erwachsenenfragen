@@ -1,0 +1,129 @@
+---
+import type { CatalogCategory } from '../lib/catalog';
+import ProductGrid from './ProductGrid.astro';
+import { toProductCard } from '../lib/catalog';
+
+interface Props {
+  category: CatalogCategory;
+}
+
+const { category } = Astro.props;
+const intro = `In der Kategorie ${category.name.toLowerCase()} finden Sie ausführliche Bewertungen und Vergleiche der besten Produkte. Schauen Sie sich alle ${category.productCount} Kaufberatungen in dieser Kategorie an.`;
+const products = category.products.map((p) => ({
+  title: p.name,
+  href: p.href,
+  image: p.image,
+  category: category.name,
+  categorySlug: category.slug,
+}));
+---
+
+<section class="category-page">
+  <header class="category-page__banner">
+    <p class="category-page__eyebrow">Kategorie</p>
+    <h1 class="category-page__title">{category.name}</h1>
+    <p class="category-page__intro">{intro}</p>
+    <p class="category-page__count">{category.productCount} Kaufberatungen</p>
+  </header>
+
+  <div class="category-page__alpha">
+    {
+      [...new Set(products.map((p) => p.title.charAt(0).toUpperCase()))]
+        .sort()
+        .map((letter) => (
+          <a href={`#letter-${letter}`} class="category-page__alpha-link">
+            {letter}
+          </a>
+        ))
+    }
+  </div>
+
+  {
+    [...new Set(products.map((p) => p.title.charAt(0).toUpperCase()))]
+      .sort()
+      .map((letter) => {
+        const group = products.filter((p) => p.title.charAt(0).toUpperCase() === letter);
+        return (
+          <section class="category-page__group" id={`letter-${letter}`}>
+            <h2 class="category-page__group-title">{letter}</h2>
+            <ProductGrid items={group} showAllHref={undefined} columns={3} />
+          </section>
+        );
+      })
+  }
+</section>
+
+<style>
+  .category-page {
+    display: grid;
+    gap: clamp(2rem, 4vw, 3rem);
+  }
+
+  .category-page__banner {
+    padding: clamp(2rem, 5vw, 3rem);
+    background: linear-gradient(135deg, rgba(203, 0, 0, 0.1), rgba(12, 15, 23, 0.9));
+    border: 1px solid var(--color-border);
+    border-radius: calc(var(--card-radius) * 2);
+  }
+
+  .category-page__eyebrow {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    margin-bottom: 0.75rem;
+  }
+
+  .category-page__title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .category-page__intro,
+  .category-page__count {
+    max-width: 720px;
+    line-height: 1.7;
+    color: var(--color-text-muted);
+  }
+
+  .category-page__count {
+    margin-top: 0.75rem;
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  .category-page__alpha {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .category-page__alpha-link {
+    display: grid;
+    place-items: center;
+    min-width: 2.25rem;
+    height: 2.25rem;
+    padding-inline: 0.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--card-radius);
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition:
+      background-color var(--transition),
+      border-color var(--transition),
+      color var(--transition);
+  }
+
+  .category-page__alpha-link:hover {
+    color: #fff;
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+
+  .category-page__group-title {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+  }
+</style>

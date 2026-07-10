@@ -3,7 +3,7 @@ import { getCollection, getEntry } from 'astro:content';
 import PageContentLayout from '../layouts/PageContentLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { reviews, popularProducts } from '../data/products';
+import { catalog } from '../data/products';
 
 const entry = await getEntry('pages', 'sitemap');
 if (!entry) throw new Error('Missing page: sitemap');
@@ -11,9 +11,11 @@ if (!entry) throw new Error('Missing page: sitemap');
 const blogPosts = (await getCollection('blog')).sort((a, b) =>
   a.data.title.localeCompare(b.data.title),
 );
-const pages = (await getCollection('pages')).sort((a, b) =>
-  a.data.title.localeCompare(b.data.title),
-);
+const pages = (await getCollection('pages'))
+  .filter((page) => !page.id.startsWith('beste-'))
+  .sort((a, b) => a.data.title.localeCompare(b.data.title));
+const products = [...catalog.products].sort((a, b) => a.name.localeCompare(b.name));
+const categories = [...catalog.categories].sort((a, b) => a.name.localeCompare(b.name));
 ---
 
 <PageContentLayout entry={entry}>
@@ -40,23 +42,23 @@ const pages = (await getCollection('pages')).sort((a, b) =>
     }
   </ul>
 
-  <h2>Bewertungen</h2>
+  <h2>Kategorien</h2>
   <ul class="sitemap-list">
     {
-      reviews.map((item) => (
+      categories.map((category) => (
         <li>
-          <a href={item.href}>{item.title}</a>
+          <a href={category.href}>{category.name}</a> ({category.productCount})
         </li>
       ))
     }
   </ul>
 
-  <h2>Beliebte Produkte</h2>
+  <h2>Produktvergleiche ({products.length})</h2>
   <ul class="sitemap-list">
     {
-      popularProducts.map((item) => (
+      products.map((product) => (
         <li>
-          <a href={item.href}>{item.title}</a>
+          <a href={product.href}>{product.name}</a>
         </li>
       ))
     }

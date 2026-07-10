@@ -1,24 +1,18 @@
 ---
-import type { Product } from '../data/products';
+import ProductCard from './ProductCard.astro';
+import type { ProductCardData } from '../lib/catalog';
 
 interface Props {
-  items: Product[];
+  items: ProductCardData[];
   showAllHref?: string;
+  columns?: 3 | 4;
 }
 
-const { items, showAllHref = '/sitemap' } = Astro.props;
+const { items, showAllHref = '/sitemap/', columns = 4 } = Astro.props;
 ---
 
-<div class="product-grid card-grid card-grid--4">
-  {
-    items.map((item) => (
-      <article class="product-card">
-        <h4 class="product-card__title">
-          <a href={item.href}>{item.title}</a>
-        </h4>
-      </article>
-    ))
-  }
+<div class:list={['product-grid', `product-grid--${columns}`]}>
+  {items.map((item) => <ProductCard item={item} />)}
 </div>
 
 {
@@ -32,9 +26,40 @@ const { items, showAllHref = '/sitemap' } = Astro.props;
 }
 
 <style>
+  .product-grid {
+    display: grid;
+    gap: clamp(1rem, 2.5vw, 1.5rem);
+    align-items: stretch;
+  }
+
+  .product-grid--4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .product-grid--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .product-grid__action {
     display: flex;
     justify-content: center;
-    margin-top: clamp(2rem, 5vw, 4.5rem);
+    margin-top: clamp(2rem, 5vw, 4rem);
+  }
+
+  @media (max-width: 1023px) {
+    .product-grid--4 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .product-grid--3 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 599px) {
+    .product-grid--4,
+    .product-grid--3 {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

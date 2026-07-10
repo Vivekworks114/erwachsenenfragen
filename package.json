@@ -11,6 +11,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "crawl": "python3 scripts/crawl-live-site.py",
+    "sync": "python3 scripts/sync-koopgids-sheet.py",
     "validate": "node scripts/validate-site.mjs --base http://127.0.0.1:4322"
   },
   "dependencies": {

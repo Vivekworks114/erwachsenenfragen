@@ -32,6 +32,7 @@ const pages = defineCollection({
     updatedDate: z.coerce.date().optional(),
     slug: z.string().optional(),
     pageType: z.enum(['page', 'review', 'category']).optional(),
+    catalogSlug: z.string().optional(),
     contentHtml: z.string().optional(),
     contentHtmlFile: z.string().optional(),
   }),

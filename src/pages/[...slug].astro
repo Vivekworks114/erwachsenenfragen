@@ -5,6 +5,8 @@ import Footer from '../components/Footer.astro';
 import BlogPostLayout from '../layouts/BlogPostLayout.astro';
 import PageContentLayout from '../layouts/PageContentLayout.astro';
 import ProductReviewLayout from '../layouts/ProductReviewLayout.astro';
+import CategoryPageLayout from '../layouts/CategoryPageLayout.astro';
+import { getProductBySlug, getCategoryBySlug } from '../lib/catalog';
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection('blog');
@@ -29,19 +31,28 @@ export async function getStaticPaths() {
   const pagePaths = pageEntries
     .filter((entry) => !staticPageSlugs.has(entry.id))
     .map((entry) => {
-      const pageType =
-        entry.data.pageType ||
-        (entry.id.startsWith('beste-') ? 'review' : 'page');
+      const catalogProduct = getProductBySlug(entry.id);
+      const catalogCategory = getCategoryBySlug(entry.id);
+      let pageType = entry.data.pageType || 'page';
+      if (catalogProduct) pageType = 'review';
+      else if (catalogCategory) pageType = 'category';
+      else if (entry.id.startsWith('beste-')) pageType = 'review';
+
       return {
         params: { slug: entry.id },
-        props: { type: pageType as 'page' | 'review', entry },
+        props: {
+          type: pageType as 'page' | 'review' | 'category',
+          entry,
+          catalogProduct,
+          catalogCategory,
+        },
       };
     });
 
   return [...blogPaths, ...pagePaths];
 }
 
-const { entry, type } = Astro.props;
+const { entry, type, catalogProduct, catalogCategory } = Astro.props;
 const { Content } = await render(entry);
 ---
 
@@ -53,11 +64,17 @@ const { Content } = await render(entry);
       <Footer slot="footer" />
     </BlogPostLayout>
   ) : type === 'review' ? (
-    <ProductReviewLayout entry={entry}>
+    <ProductReviewLayout entry={entry} product={catalogProduct}>
       <Header slot="header" />
       <Content />
       <Footer slot="footer" />
     </ProductReviewLayout>
+  ) : type === 'category' ? (
+    <CategoryPageLayout entry={entry} category={catalogCategory}>
+      <Header slot="header" />
+      <Content />
+      <Footer slot="footer" />
+    </CategoryPageLayout>
   ) : (
     <PageContentLayout entry={entry}>
       <Header slot="header" />

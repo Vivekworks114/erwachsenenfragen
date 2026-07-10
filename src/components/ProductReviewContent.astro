@@ -1,0 +1,332 @@
+---
+import type { CatalogProduct } from '../lib/catalog';
+import { getCategoryBySlug, getRelatedProducts } from '../lib/catalog';
+import ProductGrid from './ProductGrid.astro';
+import { toProductCard } from '../lib/catalog';
+
+interface Props {
+  product: CatalogProduct;
+}
+
+const { product } = Astro.props;
+const category = getCategoryBySlug(product.categorySlug);
+const related = getRelatedProducts(product, 4);
+const topFour = product.topItems.slice(0, 4);
+const topRest = product.topItems.slice(4);
+const year = new Date().getFullYear();
+---
+
+<article class="review">
+  <nav class="review__breadcrumbs" aria-label="Brotkrumen">
+    <a href="/">Startseite</a>
+    <span aria-hidden="true">/</span>
+    {
+      category && (
+        <>
+          <a href={category.href}>{category.name}</a>
+          <span aria-hidden="true">/</span>
+        </>
+      )
+    }
+    <span aria-current="page">{product.name}</span>
+  </nav>
+
+  <header class="review__hero">
+    <div class="review__hero-copy">
+      <p class="review__eyebrow">Top 10 Kaufberatung {year}</p>
+      <h1 class="review__title">
+        {product.ev} im Test: Die 10 besten {product.mv} {year}
+      </h1>
+      {
+        product.modifiedDisplay && (
+          <p class="review__updated">Zuletzt aktualisiert: {product.modifiedDisplay}</p>
+        )
+      }
+      <p class="review__intro">{product.intro}</p>
+    </div>
+    {
+      product.image && (
+        <div class="review__hero-image">
+          <img src={product.image} alt={product.name} width={480} height={360} loading="eager" />
+        </div>
+      )
+    }
+  </header>
+
+  <section class="review__section">
+    <h2>Welcher {product.ev} ist der Beste?</h2>
+    <p>
+      Ein kurzer Blick nach unten und Sie sehen die 10 meistverkauften {product.mv} des Jahres {year}.
+    </p>
+  </section>
+
+  <section class="review__section">
+    <h2>Die besten 4 {product.mv} vergleichen | Bester {product.ev}</h2>
+    <p>
+      Hier ist eine Liste der Top 4 {product.mv} des Jahres {year}. Informieren Sie sich auf dieser
+      Seite, welcher {product.ev}-Bestseller für Sie der Richtige ist.
+    </p>
+
+    <div class="review__top-list">
+      {
+        topFour.map((item) => (
+          <article class="review-item review-item--featured">
+            <div class="review-item__rank">{item.rank}</div>
+            <div class="review-item__content">
+              {
+                item.image && (
+                  <a href={item.link || '#'} class="review-item__image" target="_blank" rel="nofollow noopener">
+                    <img src={item.image} alt={item.name} width={400} height={400} loading="lazy" />
+                  </a>
+                )
+              }
+              <div class="review-item__copy">
+                <h3>{item.rank}. {item.name}</h3>
+                <p>{item.description}</p>
+                {
+                  item.link && (
+                    <a href={item.link} class="btn btn--primary btn--sm" target="_blank" rel="nofollow noopener">
+                      Günstiger Preis
+                    </a>
+                  )
+                }
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  {
+    topRest.length > 0 && (
+      <section class="review__section">
+        <h2>Top 5 - 10 {product.mv} des Jahres {year}</h2>
+        <div class="review__top-list review__top-list--compact">
+          {topRest.map((item) => (
+            <article class="review-item">
+              <div class="review-item__rank">{item.rank}</div>
+              <div class="review-item__content review-item__content--compact">
+                {
+                  item.image && (
+                    <a href={item.link || '#'} class="review-item__image review-item__image--sm" target="_blank" rel="nofollow noopener">
+                      <img src={item.image} alt={item.name} width={200} height={200} loading="lazy" />
+                    </a>
+                  )
+                }
+                <div class="review-item__copy">
+                  <h3>{item.rank}. {item.name}</h3>
+                  <p>{item.description}</p>
+                  {
+                    item.link && (
+                      <a href={item.link} class="btn btn--outline btn--sm" target="_blank" rel="nofollow noopener">
+                        Günstiger Preis
+                      </a>
+                    )
+                  }
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  {
+    product.conclusion && (
+      <section class="review__section review__conclusion">
+        <h2>Ein letztes Wort zum Kauf eines {product.ev}</h2>
+        {product.conclusion.split('\n\n').map((paragraph) => <p>{paragraph}</p>)}
+      </section>
+    )
+  }
+
+  {
+    related.length > 0 && (
+      <section class="review__section review__related">
+        <h2>Ähnliche Produkte in {category?.name}</h2>
+        <ProductGrid items={related.map(toProductCard)} showAllHref={category?.href} columns={4} />
+      </section>
+    )
+  }
+
+  <footer class="review__footer">
+    <a href="/blog/" class="btn btn--outline">← Zurück zum Blog</a>
+    {
+      category && (
+        <a href={category.href} class="btn btn--primary">
+          Alle {category.name} ansehen
+        </a>
+      )
+    }
+  </footer>
+</article>
+
+<style>
+  .review {
+    display: grid;
+    gap: clamp(2rem, 4vw, 3rem);
+  }
+
+  .review__breadcrumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+  }
+
+  .review__breadcrumbs a:hover {
+    color: var(--color-primary);
+  }
+
+  .review__hero {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: clamp(1.5rem, 4vw, 2.5rem);
+    align-items: center;
+    padding: clamp(1.5rem, 3vw, 2rem);
+    background: linear-gradient(135deg, rgba(203, 0, 0, 0.08), rgba(255, 255, 255, 0.02));
+    border: 1px solid var(--color-border);
+    border-radius: calc(var(--card-radius) * 2);
+  }
+
+  .review__eyebrow {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    margin-bottom: 0.75rem;
+  }
+
+  .review__title {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    line-height: 1.15;
+    margin-bottom: 0.75rem;
+  }
+
+  .review__updated {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1rem;
+  }
+
+  .review__intro {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .review__hero-image img {
+    width: 100%;
+    border-radius: var(--card-radius);
+    border: 1px solid var(--color-border);
+    object-fit: cover;
+    aspect-ratio: 4 / 3;
+  }
+
+  .review__section h2 {
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    margin-bottom: 1rem;
+  }
+
+  .review__section p {
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 1rem;
+  }
+
+  .review__top-list {
+    display: grid;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+  }
+
+  .review-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--card-radius);
+  }
+
+  .review-item--featured {
+    border-color: rgba(203, 0, 0, 0.35);
+  }
+
+  .review-item__rank {
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: #fff;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .review-item__content {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 1.25rem;
+    align-items: start;
+  }
+
+  .review-item__content--compact {
+    grid-template-columns: 120px 1fr;
+  }
+
+  .review-item__image img {
+    width: 100%;
+    border-radius: var(--card-radius);
+    border: 1px solid var(--color-border);
+    object-fit: cover;
+    aspect-ratio: 1;
+  }
+
+  .review-item__copy h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .review-item__copy p {
+    font-size: 0.975rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .review__conclusion {
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .review__related {
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .review__footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  @media (max-width: 900px) {
+    .review__hero {
+      grid-template-columns: 1fr;
+    }
+
+    .review-item__content,
+    .review-item__content--compact {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

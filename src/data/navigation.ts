@@ -1,43 +1,57 @@
+import { catalog } from '../lib/catalog';
+
 export interface NavItem {
   label: string;
   href: string;
   children?: NavItem[];
 }
 
+const CATEGORY_NAV: Record<string, string> = {
+  'bettwaesche-und-moebel': 'Bettwäsche und möbel',
+  'gesichtspflege-und-make-up': 'Gesichtspflege und Make-up',
+  'elektronische-geraete': 'Elektronische Geräte',
+  'luftaufbereitung': 'Luftaufbereitung',
+  'koerperpflege': 'Körperpflege',
+  'heimzubehoer-und-sicherheit': 'Heimzubehör und Sicherheit',
+  'haarpflege': 'Haarpflege',
+};
+
+function buildCategoryChildren(categorySlug: string): NavItem[] {
+  const category = catalog.categories.find((c) => c.slug === categorySlug);
+  if (!category) return [];
+  return category.products.map((p) => ({
+    label: p.name,
+    href: p.href.replace(/\/$/, ''),
+  }));
+}
+
 export const mainNavigation: NavItem[] = [
   { label: 'Fragen ansehen', href: '/fragen-anzeigen' },
   { label: 'Fragen stellen', href: '/fragen-stellen' },
   {
-    label: 'Bettwäsche und möbel',
+    label: CATEGORY_NAV['bettwaesche-und-moebel'],
     href: '/bettwaesche-und-moebel',
-    children: [
-      { label: 'Pouf', href: '/beste-pouf' },
-      { label: 'Sitzsack', href: '/beste-sitzsack' },
-      { label: 'Betttisch', href: '/beste-betttisch' },
-      { label: 'Beistelltisch', href: '/beste-beistelltisch' },
-      { label: 'Hängesessel', href: '/beste-haengesessel' },
-      { label: 'Matratzenkeil', href: '/beste-matratzenkeil' },
-      { label: 'Kleiderschrank', href: '/beste-kleiderschrank' },
-      { label: 'Matratzenbezug', href: '/beste-matratzenbezug' },
-      { label: 'Matratzenschoner', href: '/beste-matratzenschoner' },
-      { label: 'Satin-Kopfkissenbezug', href: '/beste-satin-kopfkissenbezug' },
-    ],
+    children: buildCategoryChildren('bettwaesche-und-moebel'),
   },
   {
-    label: 'Gesichtspflege und Make-up',
+    label: CATEGORY_NAV['gesichtspflege-und-make-up'],
     href: '/gesichtspflege-und-make-up',
-    children: [
-      { label: 'Epilierer', href: '/beste-epilierer' },
-      { label: 'Entwickler', href: '/beste-entwickler' },
-      { label: 'Lippenstift', href: '/beste-lippenstift' },
-      { label: 'Abdeckstift', href: '/beste-abdeckstift' },
-      { label: 'Rasierapparat', href: '/beste-rasierapparat' },
-      { label: 'Lippenbalsam', href: '/beste-lippenbalsam' },
-      { label: 'Gesichtsreiniger', href: '/beste-gesichtsreiniger' },
-      { label: 'Gesichtsepilierer', href: '/beste-gesichtsepilierer' },
-      { label: 'Foundation-Pinsel', href: '/beste-foundation-pinsel' },
-      { label: 'Make-up-Schwamm', href: '/beste-make-up-schwamm' },
-    ],
+    children: buildCategoryChildren('gesichtspflege-und-make-up'),
+  },
+  {
+    label: CATEGORY_NAV['elektronische-geraete'],
+    href: '/elektronische-geraete',
+    children: buildCategoryChildren('elektronische-geraete'),
+  },
+  {
+    label: CATEGORY_NAV['koerperpflege'],
+    href: '/koerperpflege',
+    children: buildCategoryChildren('koerperpflege'),
+  },
+  {
+    label: CATEGORY_NAV['luftaufbereitung'],
+    href: '/luftaufbereitung',
+    children: buildCategoryChildren('luftaufbereitung'),
   },
   { label: 'Über uns', href: '/uber-uns' },
   { label: 'Kontakt', href: '/kontakt' },
@@ -45,35 +59,23 @@ export const mainNavigation: NavItem[] = [
 ];
 
 export const footerInfoLinks = [
-  { label: 'Vragen weergeven', href: '/fragen-anzeigen' },
-  { label: 'Over ons', href: '/uber-uns' },
-  { label: 'contact', href: '/kontakt' },
+  { label: 'Fragen ansehen', href: '/fragen-anzeigen' },
+  { label: 'Über uns', href: '/uber-uns' },
+  { label: 'Kontakt', href: '/kontakt' },
   { label: 'Blog', href: '/blog' },
 ];
 
-export const footerElectronicsLinks = [
-  { label: '4k Beamer', href: '/beste-4k-beamer' },
-  { label: 'Smart Tv 32 Zoll', href: '/beste-smart-tv-32-zoll' },
-  { label: 'Smart Tv 40 Zoll', href: '/beste-smart-tv-40-zoll' },
-  { label: 'Smart Tv 50 Zoll', href: '/beste-smart-tv-50-zoll' },
-  { label: 'Smart Tv 55 Zoll', href: '/beste-smart-tv-55-zoll' },
-  { label: 'Smart Tv 65 Zoll', href: '/beste-smart-tv-65-zoll' },
-];
+export const footerElectronicsLinks = buildCategoryChildren('elektronische-geraete').map((item) => ({
+  label: item.label,
+  href: item.href,
+}));
 
-export const footerBodyCareLinks = [
-  { label: 'Badeschaum', href: '/beste-badeschaum' },
-  { label: 'Duschschaum', href: '/beste-duschschaum' },
-  { label: 'Selbstbräuner', href: '/beste-selbstbraeuner' },
-  { label: 'Entgiftungstee', href: '/beste-entgiftungstee' },
-  { label: 'Damenrasierer', href: '/beste-damenrasierer' },
-  { label: 'Whirlpool Aufblasbar', href: '/beste-whirlpool-aufblasbar' },
-];
+export const footerBodyCareLinks = buildCategoryChildren('koerperpflege').map((item) => ({
+  label: item.label,
+  href: item.href,
+}));
 
-export const footerAirLinks = [
-  { label: 'Ventilator', href: '/beste-ventilator' },
-  { label: 'Weihrauch', href: '/beste-weihrauch' },
-  { label: 'Luftreiniger', href: '/beste-luftreiniger' },
-  { label: 'Luftbefeuchter', href: '/beste-luftbefeuchter' },
-  { label: 'Luftentfeuchter', href: '/beste-luftentfeuchter' },
-  { label: 'Aroma-Diffusor', href: '/beste-aroma-diffusor' },
-];
+export const footerAirLinks = buildCategoryChildren('luftaufbereitung').map((item) => ({
+  label: item.label,
+  href: item.href,
+}));

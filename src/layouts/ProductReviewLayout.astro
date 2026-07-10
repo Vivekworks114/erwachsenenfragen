@@ -1,27 +1,29 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import type { CatalogProduct } from '../lib/catalog';
 import BaseLayout from './BaseLayout.astro';
+import ProductReviewContent from '../components/ProductReviewContent.astro';
 import { getContentHtml } from '../lib/content-html';
 
 interface Props {
   entry: CollectionEntry<'pages'>;
+  product?: CatalogProduct;
 }
 
-const { entry } = Astro.props;
+const { entry, product } = Astro.props;
 const { title, description } = entry.data;
-const contentHtml = getContentHtml(entry);
+const contentHtml = product ? '' : getContentHtml(entry);
 ---
 
-<BaseLayout
-  title={`${title} - AdultVragen.de`}
-  description={description || title}
->
+<BaseLayout title={`${title} - AdultVragen.de`} description={description || title}>
   <slot name="header" />
   <main id="content" class="product-review">
     <section class="section product-review__section">
       <div class="container product-review__container">
         {
-          contentHtml ? (
+          product ? (
+            <ProductReviewContent product={product} />
+          ) : contentHtml ? (
             <div class="wp-content product-review__body" set:html={contentHtml} />
           ) : (
             <div class="wp-content product-review__body">
@@ -41,57 +43,6 @@ const contentHtml = getContentHtml(entry);
   }
 
   .product-review__container {
-    max-width: 900px;
-  }
-
-  .product-review__body :global(h1) {
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
-    margin-bottom: 1rem;
-    line-height: 1.2;
-    color: var(--color-secondary);
-  }
-
-  .product-review__body :global(h2) {
-    font-size: clamp(1.35rem, 3vw, 1.75rem);
-    margin: 2.5rem 0 1rem;
-    color: var(--color-secondary);
-  }
-
-  .product-review__body :global(h3) {
-    font-size: 1.25rem;
-    margin: 2rem 0 0.75rem;
-    color: var(--color-secondary);
-  }
-
-  .product-review__body :global(p) {
-    margin-bottom: 1.1rem;
-    line-height: 1.75;
-    color: rgba(255, 255, 255, 0.9);
-  }
-
-  .product-review__body :global(img) {
-    display: block;
-    max-width: 400px;
-    width: 100%;
-    height: auto;
-    margin: 1.25rem 0;
-    border-radius: var(--card-radius);
-    border: 1px solid var(--color-border);
-  }
-
-  .product-review__body :global(a) {
-    color: var(--color-primary);
-    text-decoration: underline;
-    text-underline-offset: 2px;
-  }
-
-  .product-review__body :global(ul),
-  .product-review__body :global(ol) {
-    margin: 1rem 0 1.5rem 1.25rem;
-  }
-
-  .product-review__body :global(li) {
-    margin-bottom: 0.5rem;
-    line-height: 1.6;
+    max-width: 960px;
   }
 </style>

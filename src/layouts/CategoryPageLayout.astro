@@ -1,0 +1,36 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import type { CatalogCategory } from '../lib/catalog';
+import BaseLayout from './BaseLayout.astro';
+import CategoryPageContent from '../components/CategoryPageContent.astro';
+import { getContentHtml } from '../lib/content-html';
+
+interface Props {
+  entry: CollectionEntry<'pages'>;
+  category?: CatalogCategory;
+}
+
+const { entry, category } = Astro.props;
+const { title, description } = entry.data;
+const contentHtml = category ? '' : getContentHtml(entry);
+---
+
+<BaseLayout title={`${title} - AdultVragen.de`} description={description || title}>
+  <slot name="header" />
+  <main id="content" class="category-page-main">
+    <section class="section">
+      <div class="container">
+        {
+          category ? (
+            <CategoryPageContent category={category} />
+          ) : contentHtml ? (
+            <div class="wp-content" set:html={contentHtml} />
+          ) : (
+            <slot />
+          )
+        }
+      </div>
+    </section>
+  </main>
+  <slot name="footer" />
+</BaseLayout>
