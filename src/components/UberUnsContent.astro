@@ -7,12 +7,13 @@ import { uberUnsIntro, uberUnsPartners } from '../data/uber-uns-partners';
     <div class="uber-uns-section__overlay" aria-hidden="true"></div>
     <div class="uber-uns-section__inner">
       <div class="uber-uns-block">
-        <h2 id="uber-uns-heading" class="elementor-heading-title">Über uns</h2>
+        <p class="uber-uns-brand">AdultVragen.de</p>
+        <h1 id="uber-uns-heading" class="elementor-heading-title">Über uns</h1>
         <p class="uber-uns-text">{uberUnsIntro}</p>
       </div>
 
       <div class="uber-uns-block">
-        <h2 id="partner-heading" class="elementor-heading-title">Partner</h2>
+        <h2 id="partner-heading" class="elementor-heading-title elementor-heading-title--sm">Partner</h2>
         <ul class="uber-uns-partners" aria-labelledby="partner-heading">
           {
             uberUnsPartners.map((partner) => (

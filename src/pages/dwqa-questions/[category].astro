@@ -8,7 +8,11 @@ import {
   getPostsForCategory,
   isBlogCategorySlug,
 } from '../../lib/blog-categories';
-import { getListingExcerpt, getListingImage } from '../../lib/blog-listing';
+import {
+  formatBlogDate,
+  getListingExcerpt,
+  getListingImage,
+} from '../../lib/blog-listing';
 
 export async function getStaticPaths() {
   return Object.keys(blogCategoryArchives).map((category) => ({
@@ -18,7 +22,7 @@ export async function getStaticPaths() {
 
 const { category } = Astro.params;
 if (!category || !isBlogCategorySlug(category)) {
-  return Astro.redirect('/404');
+  return Astro.redirect('/404/');
 }
 
 const meta = blogCategoryArchives[category];
@@ -30,28 +34,36 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
 <BaseLayout title={meta.title} description={meta.description} canonicalUrl={canonicalUrl}>
   <Header />
   <main id="content" class="category-archive">
-    <div class="container">
-      <header class="category-archive__header">
+    <header class="category-archive__hero">
+      <div class="container">
+        <nav class="category-archive__crumbs" aria-label="Brotkrumen">
+          <a href="/">Startseite</a>
+          <span aria-hidden="true">/</span>
+          <a href="/blog/">Blog</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">{meta.label}</span>
+        </nav>
+        <p class="category-archive__brand">AdultVragen.de</p>
         <h1 class="category-archive__title">
           Kategorie: <span>{meta.label}</span>
         </h1>
-      </header>
+        <p class="category-archive__count">{posts.length} Beiträge</p>
+      </div>
+    </header>
 
-      <div class="category-archive__content page-content">
-        {
-          posts.map((post) => {
-            const postUrl = `/${post.id}/`;
-            const image = getListingImage(post);
-            const excerpt = getListingExcerpt(post);
+    <section class="category-archive__list section">
+      <div class="container">
+        <div class="category-archive__grid">
+          {
+            posts.map((post) => {
+              const postUrl = `/${post.id}/`;
+              const image = getListingImage(post);
+              const excerpt = getListingExcerpt(post);
 
-            return (
-              <article class="content-card post">
-                <h2 class="content-card__title entry-title">
-                  <a href={postUrl}>{post.data.title}</a>
-                </h2>
-                {
-                  image && (
-                    <a href={postUrl} class="content-card__media post__thumbnail-link" aria-hidden="true" tabindex="-1">
+              return (
+                <article class="blog-card">
+                  {image && (
+                    <a href={postUrl} class="blog-card__media" tabindex="-1" aria-hidden="true">
                       <img
                         src={image.src}
                         alt={image.alt}
@@ -61,54 +73,237 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
                         decoding="async"
                       />
                     </a>
-                  )
-                }
-                <p class="content-card__excerpt">{excerpt}</p>
-                <a href={postUrl} class="content-card__link">Weiterlesen »</a>
-              </article>
-            );
-          })
+                  )}
+                  <div class="blog-card__body">
+                    <time class="blog-card__meta" datetime={post.data.pubDate.toISOString()}>
+                      {formatBlogDate(post.data.pubDate)}
+                    </time>
+                    <h2 class="blog-card__title">
+                      <a href={postUrl}>{post.data.title}</a>
+                    </h2>
+                    <p class="blog-card__excerpt">{excerpt}</p>
+                    <a href={postUrl} class="blog-card__link">
+                      Weiterlesen
+                    </a>
+                  </div>
+                </article>
+              );
+            })
+          }
+        </div>
+
+        {
+          posts.length === 0 && (
+            <p class="category-archive__empty">In dieser Kategorie sind noch keine Beiträge.</p>
+          )
         }
+
+        <div class="category-archive__actions">
+          <a href="/blog/" class="btn btn--outline">← Alle Beiträge</a>
+        </div>
       </div>
-    </div>
+    </section>
   </main>
   <Footer />
 </BaseLayout>
 
 <style>
-  .category-archive {
-    padding-block: 2.5rem 4rem;
+  .category-archive__hero {
+    position: relative;
+    padding-block: clamp(3rem, 7vw, 5rem) clamp(2rem, 4vw, 2.75rem);
+    border-bottom: 1px solid var(--color-border);
+    overflow: hidden;
   }
 
-  .category-archive__title {
-    margin: 0 0 2rem;
-    font-family: var(--font-heading);
-    font-size: clamp(1.75rem, 4vw, 2.25rem);
+  .category-archive__hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 12% 0%, rgba(225, 6, 0, 0.14), transparent 50%),
+      linear-gradient(180deg, rgba(14, 17, 25, 0.5) 0%, transparent 100%);
+    pointer-events: none;
+  }
+
+  .category-archive__hero .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .category-archive__crumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-bottom: 1.15rem;
+    font-family: var(--font-accent);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .category-archive__crumbs a:hover {
+    color: var(--color-secondary);
+  }
+
+  .category-archive__brand {
+    margin: 0 0 0.75rem;
+    font-family: var(--font-accent);
+    font-size: 0.8rem;
     font-weight: 700;
-    line-height: 1.2;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     color: var(--color-primary);
   }
 
-  .category-archive__title span {
-    color: var(--color-text);
-  }
-
-  .category-archive__content {
-    display: grid;
-    gap: 1.25rem;
-  }
-
-  .category-archive__content .post {
-    padding: 1.25rem 1.5rem;
-  }
-
-  .entry-title {
+  .category-archive__title {
     margin: 0 0 0.75rem;
-    font-size: 1.25rem;
-    line-height: 1.3;
+    font-size: clamp(2rem, 5vw, 3.15rem);
+    letter-spacing: -0.03em;
   }
 
-  .post__thumbnail-link {
-    margin-bottom: 0.75rem;
+  .category-archive__title::after {
+    content: '';
+    display: block;
+    width: 2.5rem;
+    height: 3px;
+    margin-top: 1rem;
+    background: linear-gradient(90deg, var(--color-primary), rgba(225, 6, 0, 0.2));
+    border-radius: 999px;
+  }
+
+  .category-archive__title span {
+    color: var(--color-primary);
+  }
+
+  .category-archive__count {
+    margin: 0;
+    font-family: var(--font-accent);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .category-archive__list {
+    padding-block: clamp(2.25rem, 5vw, 3.5rem) clamp(3rem, 6vw, 5rem);
+  }
+
+  .category-archive__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(1.15rem, 2.5vw, 1.6rem);
+  }
+
+  .blog-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 40%),
+      var(--color-surface-elevated);
+    border: 1px solid var(--color-border);
+    border-radius: var(--card-radius-lg);
+    transition:
+      transform var(--transition),
+      border-color var(--transition),
+      box-shadow var(--transition);
+  }
+
+  .blog-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(225, 6, 0, 0.4);
+    box-shadow: var(--shadow-md);
+  }
+
+  .blog-card__media {
+    display: block;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .blog-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .blog-card:hover .blog-card__media img {
+    transform: scale(1.06);
+  }
+
+  .blog-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    flex: 1;
+    padding: 1.15rem 1.2rem 1.35rem;
+  }
+
+  .blog-card__meta {
+    font-family: var(--font-accent);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .blog-card__title {
+    margin: 0;
+    font-size: 1.1rem;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+  }
+
+  .blog-card__title a {
+    color: var(--color-secondary);
+  }
+
+  .blog-card__title a:hover {
+    color: var(--color-primary);
+  }
+
+  .blog-card__excerpt {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+    flex: 1;
+  }
+
+  .blog-card__link {
+    align-self: flex-start;
+    margin-top: 0.5rem;
+    font-family: var(--font-accent);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+  }
+
+  .category-archive__empty {
+    color: var(--color-text-muted);
+  }
+
+  .category-archive__actions {
+    margin-top: clamp(2rem, 4vw, 3rem);
+  }
+
+  @media (max-width: 1023px) {
+    .category-archive__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 599px) {
+    .category-archive__grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

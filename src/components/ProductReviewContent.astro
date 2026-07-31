@@ -166,14 +166,18 @@ const year = new Date().getFullYear();
 <style>
   .review {
     display: grid;
-    gap: clamp(2rem, 4vw, 3rem);
+    gap: clamp(2rem, 4vw, 3.25rem);
   }
 
   .review__breadcrumbs {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    font-size: 0.875rem;
+    font-family: var(--font-accent);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
     color: var(--color-text-muted);
   }
 
@@ -184,27 +188,33 @@ const year = new Date().getFullYear();
   .review__hero {
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
-    gap: clamp(1.5rem, 4vw, 2.5rem);
+    gap: clamp(1.5rem, 4vw, 2.75rem);
     align-items: center;
-    padding: clamp(1.5rem, 3vw, 2rem);
-    background: linear-gradient(135deg, rgba(203, 0, 0, 0.08), rgba(255, 255, 255, 0.02));
+    padding: clamp(1.5rem, 3.5vw, 2.25rem);
+    background:
+      radial-gradient(ellipse at 0% 0%, rgba(225, 6, 0, 0.14), transparent 55%),
+      linear-gradient(135deg, rgba(255, 255, 255, 0.03), transparent 50%),
+      var(--color-surface-elevated);
     border: 1px solid var(--color-border);
-    border-radius: calc(var(--card-radius) * 2);
+    border-radius: var(--card-radius-lg);
+    box-shadow: var(--shadow-sm);
   }
 
   .review__eyebrow {
-    font-size: 0.8125rem;
+    font-family: var(--font-accent);
+    font-size: 0.75rem;
     font-weight: 700;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--color-primary);
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.85rem;
   }
 
   .review__title {
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
-    line-height: 1.15;
-    margin-bottom: 0.75rem;
+    font-size: clamp(1.75rem, 4vw, 2.65rem);
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.85rem;
   }
 
   .review__updated {
@@ -216,25 +226,27 @@ const year = new Date().getFullYear();
   .review__intro {
     font-size: 1.0625rem;
     line-height: 1.75;
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(244, 242, 239, 0.9);
   }
 
   .review__hero-image img {
     width: 100%;
-    border-radius: var(--card-radius);
+    border-radius: var(--card-radius-lg);
     border: 1px solid var(--color-border);
     object-fit: cover;
     aspect-ratio: 4 / 3;
+    box-shadow: var(--shadow-md);
   }
 
   .review__section h2 {
-    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    font-size: clamp(1.3rem, 3vw, 1.85rem);
+    letter-spacing: -0.02em;
     margin-bottom: 1rem;
   }
 
   .review__section p {
     line-height: 1.75;
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(244, 242, 239, 0.9);
     margin-bottom: 1rem;
   }
 
@@ -249,7 +261,8 @@ const year = new Date().getFullYear();
     grid-template-columns: auto 1fr;
     gap: 1rem;
     padding: 1.25rem;
-    background: var(--color-surface);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 40%),
+      var(--color-surface-elevated);
     border: 1px solid var(--color-border);
     border-radius: var(--card-radius-lg);
     transition:
@@ -259,25 +272,26 @@ const year = new Date().getFullYear();
   }
 
   .review-item:hover {
-    border-color: rgba(203, 0, 0, 0.35);
+    border-color: rgba(225, 6, 0, 0.4);
     box-shadow: var(--shadow-sm);
-    transform: translateY(-2px);
+    transform: translateY(-3px);
   }
 
   .review-item--featured {
-    border-color: rgba(203, 0, 0, 0.35);
+    border-color: rgba(225, 6, 0, 0.35);
   }
 
   .review-item__rank {
     display: grid;
     place-items: center;
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 50%;
-    background: var(--color-primary);
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--color-primary), #ff2a22);
     color: #fff;
     font-weight: 700;
     flex-shrink: 0;
+    box-shadow: 0 8px 20px var(--color-primary-glow);
   }
 
   .review-item__content {
@@ -302,6 +316,7 @@ const year = new Date().getFullYear();
   .review-item__copy h3 {
     font-size: 1.125rem;
     margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
   }
 
   .review-item__copy p {

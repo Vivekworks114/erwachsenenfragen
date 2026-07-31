@@ -14,17 +14,26 @@ import { categories } from '../data/products';
       class="hero__bg-image"
     />
     <div class="hero__overlay"></div>
+    <div class="hero__glow"></div>
   </div>
 
   <div class="container hero__body">
     <div class="hero__text">
-      <h1 class="hero__title">Fragen für das Schlafzimmer</h1>
-      <p class="hero__subtitle">Die Website für alle Fragen zum Thema Sex.</p>
-      <a href="/fragen-stellen/" class="btn btn--outline hero__cta">Eine Frage stellen</a>
+      <p class="hero__brand reveal">AdultVragen.de</p>
+      <h1 class="hero__title reveal reveal-delay-1">Fragen für das Schlafzimmer</h1>
+      <p class="hero__subtitle reveal reveal-delay-2">
+        Die Website für alle Fragen zum Thema Sex.
+      </p>
+      <div class="hero__actions reveal reveal-delay-3">
+        <a href="/fragen-stellen/" class="btn btn--primary hero__cta">Eine Frage stellen</a>
+        <a href="/fragen-anzeigen/" class="btn btn--outline hero__cta-secondary">Fragen ansehen</a>
+      </div>
     </div>
   </div>
+</section>
 
-  <div class="container hero__categories">
+<section class="category-strip" aria-label="Themen">
+  <div class="container">
     <div class="category-grid">
       {
         categories.map((category) => (
@@ -37,8 +46,8 @@ import { categories } from '../data/products';
               class="category-card__icon"
               src={category.icon}
               alt=""
-              width="48"
-              height="48"
+              width="40"
+              height="40"
               loading="lazy"
             />
             <span class="category-card__title">{category.title}</span>
@@ -52,9 +61,12 @@ import { categories } from '../data/products';
 <style>
   .hero {
     position: relative;
-    margin-top: -72px;
-    padding-top: calc(72px + 9rem);
-    padding-bottom: 20rem;
+    min-height: min(92vh, 820px);
+    display: flex;
+    align-items: flex-end;
+    margin-top: calc(var(--header-height) * -1);
+    padding-top: calc(var(--header-height) + clamp(4rem, 12vw, 8rem));
+    padding-bottom: clamp(4rem, 10vw, 7rem);
     overflow: hidden;
   }
 
@@ -68,59 +80,83 @@ import { categories } from '../data/products';
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
+    object-position: center 30%;
+    transform: scale(1.04);
+    animation: fade-in 1.2s ease both;
   }
 
   .hero__overlay {
     position: absolute;
     inset: 0;
-    background-color: #0b0d15;
-    opacity: 0.72;
+    background:
+      linear-gradient(90deg, rgba(8, 9, 14, 0.92) 0%, rgba(8, 9, 14, 0.55) 48%, rgba(8, 9, 14, 0.35) 100%),
+      linear-gradient(180deg, rgba(8, 9, 14, 0.45) 0%, rgba(8, 9, 14, 0.2) 40%, rgba(8, 9, 14, 0.88) 100%);
+  }
+
+  .hero__glow {
+    position: absolute;
+    inset: auto 0 0;
+    height: 45%;
+    background: radial-gradient(ellipse at 30% 100%, rgba(225, 6, 0, 0.22), transparent 55%);
+    pointer-events: none;
   }
 
   .hero__body {
     position: relative;
     z-index: 1;
+    width: 100%;
   }
 
   .hero__text {
-    max-width: 50%;
-    padding-right: 1.5rem;
+    max-width: 38rem;
+  }
+
+  .hero__brand {
+    margin: 0 0 1rem;
+    font-family: var(--font-accent);
+    font-size: clamp(1.35rem, 3vw, 1.85rem);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--color-secondary);
+    text-shadow: 0 0 40px rgba(225, 6, 0, 0.35);
   }
 
   .hero__title {
-    font-size: 4rem;
+    font-size: clamp(2.35rem, 6.5vw, 4.25rem);
     font-weight: 700;
-    line-height: 1.2;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
     color: var(--color-secondary);
-    margin: 0 0 0.75rem;
+    margin: 0 0 1rem;
   }
 
   .hero__subtitle {
-    font-size: 1.5rem;
-    font-weight: 700;
-    line-height: 1.2;
-    color: var(--color-secondary);
+    font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+    font-weight: 400;
+    line-height: 1.45;
+    color: rgba(244, 242, 239, 0.82);
     margin: 0;
+    max-width: 28rem;
   }
 
-  .hero__cta {
-    margin-top: 1rem;
-    padding: 0.8125rem 1.75rem;
-    border-radius: var(--card-radius);
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin-top: 1.75rem;
   }
 
-  .hero__categories {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 3.875rem;
+  .category-strip {
+    position: relative;
     z-index: 2;
+    margin-top: -2.5rem;
+    padding-bottom: clamp(1.5rem, 4vw, 2.5rem);
   }
 
   .category-grid {
     display: grid;
     grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 0.75rem;
   }
 
   .category-card {
@@ -128,37 +164,40 @@ import { categories } from '../data/products';
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
-    gap: 0;
-    min-height: 100px;
-    margin: 10px;
-    padding: 10px 24px;
-    border-radius: var(--card-radius);
+    justify-content: flex-end;
+    gap: 0.65rem;
+    min-height: 118px;
+    padding: 1rem 1.1rem;
+    border-radius: var(--card-radius-lg);
+    border: 1px solid var(--color-border);
     background-image: var(--card-bg);
     background-size: cover;
     background-position: center;
     overflow: hidden;
+    box-shadow: var(--shadow-sm);
     transition:
       transform var(--transition),
-      box-shadow var(--transition);
+      box-shadow var(--transition),
+      border-color var(--transition);
   }
 
   .category-card::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(11, 13, 21, 0.35) 0%, rgba(11, 13, 21, 0.72) 100%);
+    background: linear-gradient(180deg, rgba(8, 9, 14, 0.15) 0%, rgba(8, 9, 14, 0.82) 100%);
     transition: opacity var(--transition);
   }
 
   .category-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    transform: translateY(-5px);
+    border-color: rgba(225, 6, 0, 0.45);
+    box-shadow: var(--shadow-md);
     color: var(--color-secondary);
   }
 
   .category-card:hover::before {
-    opacity: 0.85;
+    opacity: 0.92;
   }
 
   .category-card__icon,
@@ -168,36 +207,22 @@ import { categories } from '../data/products';
   }
 
   .category-card__icon {
-    display: block;
-    width: 48px;
-    height: 48px;
-    margin-bottom: 0;
+    width: 36px;
+    height: 36px;
   }
 
   .category-card__title {
     font-family: var(--font-accent);
-    font-size: 1rem;
+    font-size: 0.875rem;
     font-weight: 700;
-    line-height: 1.2;
+    line-height: 1.25;
     color: var(--color-secondary);
   }
 
   @media (max-width: 1023px) {
     .hero {
-      padding-top: calc(72px + 3.25rem);
-      padding-bottom: 14rem;
-    }
-
-    .hero__text {
-      max-width: 70%;
-    }
-
-    .hero__title {
-      font-size: 3rem;
-    }
-
-    .hero__categories {
-      bottom: 2.625rem;
+      min-height: min(78vh, 700px);
+      padding-top: calc(var(--header-height) + 3.5rem);
     }
 
     .category-grid {
@@ -207,35 +232,37 @@ import { categories } from '../data/products';
 
   @media (max-width: 767px) {
     .hero {
-      padding-top: calc(64px + 3.75rem);
-      padding-bottom: 30rem;
+      min-height: auto;
+      align-items: center;
+      padding-bottom: 3.5rem;
     }
 
-    .hero__text {
-      max-width: 100%;
-      padding-right: 0;
+    .hero__overlay {
+      background:
+        linear-gradient(180deg, rgba(8, 9, 14, 0.55) 0%, rgba(8, 9, 14, 0.78) 55%, rgba(8, 9, 14, 0.94) 100%);
     }
 
-    .hero__title {
-      font-size: 2.25rem;
-    }
-
-    .hero__subtitle {
-      font-size: 1.25rem;
-    }
-
-    .hero__categories {
-      bottom: 1.5rem;
+    .category-strip {
+      margin-top: -1.25rem;
     }
 
     .category-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.6rem;
     }
 
     .category-card {
-      margin: 6px;
-      padding: 10px 16px;
-      min-height: 96px;
+      min-height: 100px;
+      padding: 0.85rem;
+    }
+
+    .hero__actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .hero__actions .btn {
+      width: 100%;
     }
   }
 </style>

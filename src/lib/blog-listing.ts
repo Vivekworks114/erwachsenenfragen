@@ -91,16 +91,6 @@ function isBrokenDescription(description: string): boolean {
   return description.includes('elementor') || description.includes('/*!');
 }
 
-function excerptFromContentHtml(contentHtml?: string): string | undefined {
-  if (!contentHtml) return undefined;
-
-  const paragraph = contentHtml.match(/<p[^>]*>([\s\S]*?)<\/p>/i);
-  if (!paragraph) return undefined;
-
-  const text = stripHtml(paragraph[1]);
-  return text.length > 0 ? text : undefined;
-}
-
 function truncateExcerpt(text: string, maxLength = 200): string {
   const cleaned = text.replace(/…/g, '').replace(/\.\.\.$/g, '').trim();
   if (cleaned.length <= maxLength) return cleaned;
@@ -121,9 +111,12 @@ export function getListingExcerpt(entry: CollectionEntry<'blog'>): string {
     return truncateExcerpt(description);
   }
 
-  const fromContent = excerptFromContentHtml(contentHtml);
-  if (fromContent) {
-    return truncateExcerpt(fromContent);
+  if (contentHtml) {
+    const paragraph = contentHtml.match(/<p[^>]*>([\s\S]*?)<\/p>/i);
+    if (paragraph) {
+      const text = stripHtml(paragraph[1]);
+      if (text) return truncateExcerpt(text);
+    }
   }
 
   return entry.data.title;

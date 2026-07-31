@@ -46,39 +46,56 @@ const showHero = !hasContentTitle(entry);
 
 <style>
   .page-hero {
-    padding-block: clamp(3rem, 8vw, 5rem) clamp(2rem, 5vw, 3rem);
+    position: relative;
+    padding-block: clamp(3.5rem, 9vw, 6rem) clamp(2.25rem, 5vw, 3.25rem);
     border-bottom: 1px solid var(--color-border);
-    background: linear-gradient(180deg, rgba(12, 15, 23, 0.5) 0%, transparent 100%);
+    overflow: hidden;
+  }
+
+  .page-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 15% 0%, rgba(225, 6, 0, 0.16), transparent 50%),
+      linear-gradient(180deg, rgba(14, 17, 25, 0.65) 0%, transparent 100%);
+    pointer-events: none;
+  }
+
+  .page-hero .container {
+    position: relative;
+    z-index: 1;
   }
 
   .page-hero__title {
-    font-size: clamp(2rem, 5vw, 3rem);
-    margin-bottom: 0.75rem;
+    font-size: clamp(2.15rem, 5.5vw, 3.35rem);
+    letter-spacing: -0.03em;
+    margin-bottom: 0.85rem;
   }
 
   .page-hero__title::after {
     content: '';
     display: block;
-    width: 3rem;
+    width: 2.5rem;
     height: 3px;
-    margin-top: 0.875rem;
-    background: var(--color-primary);
-    border-radius: 2px;
+    margin-top: 1rem;
+    background: linear-gradient(90deg, var(--color-primary), rgba(225, 6, 0, 0.2));
+    border-radius: 999px;
   }
 
   .page-hero__subtitle {
     font-size: 1.125rem;
     color: var(--color-text-muted);
     max-width: 640px;
-    line-height: 1.5;
+    line-height: 1.55;
   }
 
   .page-content {
     max-width: 800px;
     font-size: 1.0625rem;
-    line-height: 1.7;
-    color: rgba(255, 255, 255, 0.9);
-    padding-block: clamp(2rem, 5vw, 3rem);
+    line-height: 1.75;
+    color: rgba(244, 242, 239, 0.9);
+    padding-block: clamp(2rem, 5vw, 3.25rem);
   }
 
   .page-content :global(p) {
@@ -93,5 +110,6 @@ const showHero = !hasContentTitle(entry);
   .page-content :global(h3) {
     font-family: var(--font-heading);
     margin: 2rem 0 1rem;
+    letter-spacing: -0.02em;
   }
 </style>

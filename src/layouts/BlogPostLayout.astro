@@ -1,16 +1,16 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
-import { getContentHtml } from '../lib/content-html';
+import { getListingImage } from '../lib/blog-listing';
 
 interface Props {
   entry: CollectionEntry<'blog'>;
 }
 
 const { entry } = Astro.props;
-const { title, description, pubDate, updatedDate, author, categories, image, imageAlt } =
+const { title, description, pubDate, updatedDate, author, categories, image, imageAlt, contentHtml } =
   entry.data;
-const contentHtml = getContentHtml(entry);
 
 const formattedDate = pubDate.toLocaleDateString('de-DE', {
   year: 'numeric',
@@ -23,64 +23,168 @@ const formattedUpdated = updatedDate?.toLocaleDateString('de-DE', {
   month: 'long',
   day: 'numeric',
 });
+
+const showExcerpt =
+  Boolean(description) && !description.includes('elementor') && !description.includes('/*!');
+
+const categoryLabel = categories?.[0];
+const categorySlug = categoryLabel
+  ? categoryLabel.toLowerCase() === 'artikel'
+    ? 'artikel'
+    : categoryLabel.toLowerCase() === 'business'
+      ? 'business'
+      : 'uncategorized'
+  : null;
+
+const relatedPosts = (await getCollection('blog'))
+  .filter((post) => post.id !== entry.id)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
 ---
 
 <BaseLayout title={`${title} - AdultVragen.de`} description={description}>
   <slot name="header" />
   <main id="content">
-    <article class="blog-detail">
-      {
-        image && (
-          <div class="blog-detail__hero">
-            <img
-              src={image}
-              alt={imageAlt || title}
-              width={1200}
-              height={675}
-              loading="eager"
-              fetchpriority="high"
-              class="blog-detail__image"
-            />
-            <div class="blog-detail__hero-overlay" />
-          </div>
-        )
-      }
+    <article class="article">
+      <header class:list={['article-hero', !image && 'article-hero--plain']}>
+        {
+          image && (
+            <div class="article-hero__media">
+              <img
+                src={image}
+                alt={imageAlt || title}
+                width={1600}
+                height={900}
+                loading="eager"
+                fetchpriority="high"
+                class="article-hero__image"
+              />
+              <div class="article-hero__overlay" aria-hidden="true" />
+            </div>
+          )
+        }
 
-      <div class="container blog-detail__content">
-        <header class="blog-detail__header">
-          <p class="blog-detail__meta">
+        <div class="container article-hero__inner">
+          <nav class="article-hero__crumbs" aria-label="Brotkrumen">
+            <a href="/">Startseite</a>
+            <span aria-hidden="true">/</span>
+            <a href="/blog/">Blog</a>
             {
-              categories && categories.length > 0 && (
-                <span class="blog-detail__category">{categories.join(', ')}</span>
+              categoryLabel && categorySlug && (
+                <>
+                  <span aria-hidden="true">/</span>
+                  <a href={`/dwqa-questions/${categorySlug}/`}>{categoryLabel}</a>
+                </>
               )
             }
-            <time datetime={pubDate.toISOString()}>{formattedDate}</time>
-            {author && <span class="blog-detail__author">{author}</span>}
-          </p>
-          <h1 class="blog-detail__title">{title}</h1>
-          {description && <p class="blog-detail__excerpt">{description}</p>}
+          </nav>
+
+          <p class="article-hero__brand">AdultVragen.de</p>
+          <h1 class="article-hero__title">{title}</h1>
+
           {
-            updatedDate && (
-              <p class="blog-detail__updated">
-                Aktualisiert: <time datetime={updatedDate.toISOString()}>{formattedUpdated}</time>
-              </p>
+            showExcerpt && (
+              <p class="article-hero__excerpt">{description}</p>
             )
           }
-        </header>
 
-        <div class="blog-detail__body prose">
+          <div class="article-hero__meta">
+            {
+              categoryLabel && (
+                <a
+                  href={`/dwqa-questions/${categorySlug}/`}
+                  class="article-hero__chip article-hero__chip--category"
+                >
+                  {categoryLabel}
+                </a>
+              )
+            }
+            <time class="article-hero__chip" datetime={pubDate.toISOString()}>
+              {formattedDate}
+            </time>
+            {author && <span class="article-hero__chip">{author}</span>}
+            {
+              updatedDate && (
+                <span class="article-hero__chip">
+                  Aktualisiert: {formattedUpdated}
+                </span>
+              )
+            }
+          </div>
+        </div>
+      </header>
+
+      <div class="container article__layout">
+        <div class="article__body prose">
           {
             contentHtml ? (
-              <div class="wp-content" set:html={contentHtml} />
+              <div class="wp-content article__content" set:html={contentHtml} />
             ) : (
-              <slot />
+              <div class="wp-content article__content">
+                <slot />
+              </div>
             )
           }
         </div>
 
-        <footer class="blog-detail__footer">
-          <a href="/blog" class="btn btn--outline">← Zurück zum Blog</a>
-        </footer>
+        <aside class="article__aside" aria-label="Weiterlesen">
+          <div class="article-cta">
+            <p class="article-cta__eyebrow">Noch Fragen?</p>
+            <h2 class="article-cta__title">Stellen Sie Ihre Frage</h2>
+            <p class="article-cta__text">
+              Unsere Community hilft Ihnen mit Antworten rund ums Schlafzimmer.
+            </p>
+            <a href="/fragen-stellen/" class="btn btn--primary article-cta__btn">
+              Frage stellen
+            </a>
+          </div>
+        </aside>
+      </div>
+
+      {
+        relatedPosts.length > 0 && (
+          <section class="article-related section section--surface">
+            <div class="container">
+              <h2 class="section-title">Weitere Artikel</h2>
+              <p class="section-subtitle">Lesen Sie als Nächstes auf AdultVragen.de</p>
+              <div class="article-related__grid">
+                {relatedPosts.map((post) => {
+                  const relatedImage = getListingImage(post);
+                  return (
+                    <a href={`/${post.id}/`} class="article-related__card">
+                      {relatedImage && (
+                        <span class="article-related__media">
+                          <img
+                            src={relatedImage.src}
+                            alt=""
+                            width={relatedImage.width}
+                            height={relatedImage.height}
+                            loading="lazy"
+                          />
+                        </span>
+                      )}
+                      <span class="article-related__copy">
+                        <time datetime={post.data.pubDate.toISOString()}>
+                          {post.data.pubDate.toLocaleDateString('de-DE', {
+                            year: 'numeric',
+                            month: 'short',
+                            day: 'numeric',
+                          })}
+                        </time>
+                        <strong>{post.data.title}</strong>
+                      </span>
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+        )
+      }
+
+      <div class="container article__footer-bar">
+        <a href="/blog/" class="btn btn--outline">← Zurück zum Blog</a>
+        <a href="/fragen-anzeigen/" class="btn btn--outline">Fragen ansehen</a>
       </div>
     </article>
   </main>
@@ -88,96 +192,405 @@ const formattedUpdated = updatedDate?.toLocaleDateString('de-DE', {
 </BaseLayout>
 
 <style>
-  .blog-detail__hero {
-    position: relative;
-    max-height: 480px;
+  .article {
     overflow: hidden;
   }
 
-  .blog-detail__image {
-    width: 100%;
-    height: clamp(240px, 40vw, 480px);
-    object-fit: cover;
+  .article-hero {
+    position: relative;
+    text-align: center;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(225, 6, 0, 0.14), transparent 55%),
+      var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    overflow: hidden;
   }
 
-  .blog-detail__hero-overlay {
+  .article-hero--plain {
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(225, 6, 0, 0.16), transparent 55%),
+      var(--color-surface);
+  }
+
+  .article-hero__media {
+    position: relative;
+    width: 100%;
+    height: clamp(180px, 28vw, 280px);
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .article-hero__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .article-hero__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, var(--color-bg) 0%, transparent 60%);
+    background: linear-gradient(180deg, rgba(8, 9, 14, 0.15) 0%, rgba(8, 9, 14, 0.55) 100%);
+    pointer-events: none;
   }
 
-  .blog-detail__content {
-    padding-block: clamp(2rem, 5vw, 3.5rem) clamp(3rem, 6vw, 5rem);
-    max-width: 800px;
+  .article-hero__inner {
+    position: relative;
+    z-index: 1;
+    max-width: 46rem;
+    margin-inline: auto;
+    padding-block: clamp(2rem, 4.5vw, 3rem) clamp(2.25rem, 5vw, 3.25rem);
   }
 
-  .blog-detail__meta {
+  .article-hero__crumbs {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem 1rem;
-    font-size: 0.875rem;
-    color: var(--color-text-muted);
+    justify-content: center;
+    gap: 0.45rem;
     margin-bottom: 1rem;
+    font-family: var(--font-accent);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
   }
 
-  .blog-detail__category {
-    color: var(--color-primary);
+  .article-hero__crumbs a:hover {
+    color: var(--color-secondary);
+  }
+
+  .article-hero__brand {
+    margin: 0 0 0.75rem;
+    font-family: var(--font-accent);
+    font-size: 0.85rem;
     font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-primary);
   }
 
-  .blog-detail__author {
+  .article-hero__title {
+    margin: 0 auto 1rem;
+    max-width: 42rem;
+    font-size: clamp(1.85rem, 4.2vw, 2.75rem);
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    color: var(--color-secondary);
+  }
+
+  .article-hero__title::after {
+    content: '';
+    display: block;
+    width: 2.5rem;
+    height: 3px;
+    margin: 1rem auto 0;
+    background: linear-gradient(90deg, var(--color-primary), rgba(225, 6, 0, 0.2));
+    border-radius: 999px;
+  }
+
+  .article-hero__excerpt {
+    margin: 0 auto 1.35rem;
+    max-width: 38rem;
+    font-size: clamp(0.975rem, 1.8vw, 1.1rem);
+    line-height: 1.6;
     color: var(--color-text-muted);
   }
 
-  .blog-detail__title {
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
-    margin-bottom: 1rem;
-    line-height: 1.2;
+  .article-hero__meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.55rem;
   }
 
-  .blog-detail__excerpt {
-    font-size: 1.125rem;
+  .article-hero__chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.45rem 0.9rem;
+    font-family: var(--font-accent);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
     color: var(--color-text-muted);
-    line-height: 1.5;
-    margin-bottom: 1rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    transition:
+      border-color var(--transition),
+      background-color var(--transition),
+      color var(--transition);
   }
 
-  .blog-detail__updated {
-    font-size: 0.875rem;
-    color: var(--color-text-muted);
-    margin-bottom: 1.5rem;
+  .article-hero__chip--category {
+    color: var(--color-secondary);
+    background: var(--color-primary-soft);
+    border-color: rgba(225, 6, 0, 0.35);
   }
 
-  .blog-detail__body :global(p) {
-    font-size: 1.0625rem;
-    line-height: 1.7;
-    margin-bottom: 1.25rem;
-    color: rgba(255, 255, 255, 0.9);
+  .article-hero__chip--category:hover {
+    color: var(--color-secondary);
+    background: rgba(225, 6, 0, 0.25);
   }
 
-  .blog-detail__body :global(h2),
-  .blog-detail__body :global(h3),
-  .blog-detail__body :global(h4) {
+  .article__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 260px;
+    gap: clamp(2rem, 5vw, 3.5rem);
+    align-items: start;
+    padding-block: clamp(2.5rem, 5vw, 4rem) clamp(2rem, 4vw, 3rem);
+  }
+
+  .article__body {
+    min-width: 0;
+    max-width: 720px;
+  }
+
+  .article__content :global(> h1:first-child) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .article__content :global(> img:first-of-type) {
+    display: none;
+  }
+
+  .article__content :global(p) {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1.35rem;
+    color: rgba(244, 242, 239, 0.9);
+  }
+
+  .article__content :global(h2),
+  .article__content :global(h3),
+  .article__content :global(h4) {
     font-family: var(--font-heading);
     color: var(--color-secondary);
-    margin: 2rem 0 1rem;
-    line-height: 1.3;
+    margin: 2.35rem 0 1rem;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
   }
 
-  .blog-detail__body :global(a) {
+  .article__content :global(h2) {
+    font-size: clamp(1.4rem, 3vw, 1.85rem);
+  }
+
+  .article__content :global(h2)::after {
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 2px;
+    margin-top: 0.75rem;
+    background: linear-gradient(90deg, var(--color-primary), transparent);
+    border-radius: 999px;
+  }
+
+  .article__content :global(a) {
     color: var(--color-primary);
     text-decoration: underline;
-    text-underline-offset: 2px;
+    text-underline-offset: 3px;
+    transition: color var(--transition);
   }
 
-  .blog-detail__body :global(img) {
-    border-radius: var(--card-radius);
-    margin: 1.5rem 0;
+  .article__content :global(a:hover) {
+    color: #ff4d47;
   }
 
-  .blog-detail__footer {
-    margin-top: 2.5rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--color-border);
+  .article__content :global(img) {
+    width: 100%;
+    border-radius: var(--card-radius-lg);
+    margin: 1.75rem 0;
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-md);
+  }
+
+  .article__content :global(blockquote) {
+    margin: 2rem 0;
+    padding: 1.15rem 1.35rem;
+    border-left: 3px solid var(--color-primary);
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 0 var(--card-radius) var(--card-radius) 0;
+    color: var(--color-text-muted);
+    font-size: 1.05rem;
+  }
+
+  .article__content :global(ul),
+  .article__content :global(ol) {
+    margin: 0 0 1.5rem 1.25rem;
+  }
+
+  .article__content :global(li) {
+    margin-bottom: 0.55rem;
+    line-height: 1.7;
+    color: rgba(244, 242, 239, 0.9);
+  }
+
+  .article__aside {
+    position: sticky;
+    top: calc(var(--header-height) + 1.25rem);
+  }
+
+  .article-cta {
+    padding: 1.5rem;
+    background:
+      radial-gradient(ellipse at 0% 0%, rgba(225, 6, 0, 0.18), transparent 55%),
+      var(--color-surface-elevated);
+    border: 1px solid var(--color-border);
+    border-radius: var(--card-radius-lg);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .article-cta__eyebrow {
+    margin: 0 0 0.55rem;
+    font-family: var(--font-accent);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+  }
+
+  .article-cta__title {
+    margin: 0 0 0.65rem;
+    font-size: 1.25rem;
+    letter-spacing: -0.02em;
+  }
+
+  .article-cta__text {
+    margin: 0 0 1.15rem;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: var(--color-text-muted);
+  }
+
+  .article-cta__btn {
+    width: 100%;
+  }
+
+  .article-related {
+    margin-top: 1rem;
+  }
+
+  .article-related__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  .article-related__card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 45%),
+      var(--color-surface-elevated);
+    border: 1px solid var(--color-border);
+    border-radius: var(--card-radius-lg);
+    transition:
+      transform var(--transition),
+      border-color var(--transition),
+      box-shadow var(--transition);
+  }
+
+  .article-related__card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(225, 6, 0, 0.4);
+    box-shadow: var(--shadow-md);
+    color: inherit;
+  }
+
+  .article-related__media {
+    display: block;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .article-related__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .article-related__card:hover .article-related__media img {
+    transform: scale(1.06);
+  }
+
+  .article-related__copy {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    padding: 1.05rem 1.15rem 1.25rem;
+  }
+
+  .article-related__copy time {
+    font-family: var(--font-accent);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .article-related__copy strong {
+    font-size: 1rem;
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+    color: var(--color-secondary);
+  }
+
+  .article__footer-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: space-between;
+    padding-block: 0  clamp(2.5rem, 5vw, 4rem);
+  }
+
+  @media (max-width: 1023px) {
+    .article__layout {
+      grid-template-columns: 1fr;
+    }
+
+    .article__aside {
+      position: static;
+      order: 2;
+    }
+
+    .article__body {
+      max-width: none;
+    }
+
+    .article-related__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .article-hero__media {
+      height: 180px;
+    }
+
+    .article-related__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .article__footer-bar {
+      flex-direction: column;
+    }
+
+    .article__footer-bar .btn {
+      width: 100%;
+      justify-content: center;
+    }
   }
 </style>

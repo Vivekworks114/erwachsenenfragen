@@ -1,33 +1,35 @@
 .elementor-kit-8 {
-  --e-global-color-primary: #cb0000;
+  --e-global-color-primary: #e10600;
   --e-global-color-secondary: #ffffff;
-  --e-global-color-text: #ffffff;
+  --e-global-color-text: #f4f2ef;
   --e-global-typography-primary-font-family: 'Century Gothic', sans-serif;
   --e-global-typography-primary-font-weight: 700;
-  --e-global-typography-primary-line-height: 1.2em;
+  --e-global-typography-primary-line-height: 1.15em;
   --e-global-typography-text-font-family: 'Century Gothic', sans-serif;
   --e-global-typography-text-font-size: 16px;
   --e-global-typography-text-font-weight: 400;
-  --e-global-typography-text-line-height: 1.4em;
+  --e-global-typography-text-line-height: 1.55em;
 }
 
 .elementor-154 .uber-uns-section {
   position: relative;
-  margin-top: -90px;
+  margin-top: calc(var(--header-height) * -1);
   margin-bottom: 0;
-  padding: 172px 0 282px;
-  background-color: #0b0d15;
+  padding: calc(var(--header-height) + clamp(3.5rem, 8vw, 6rem)) 0 clamp(4rem, 10vw, 8rem);
+  background-color: var(--color-bg);
   background-image: url('/images/media/2022/05/Rectangle-61.png');
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
+  overflow: hidden;
 }
 
 .elementor-154 .uber-uns-section__overlay {
   position: absolute;
   inset: 0;
-  background-color: #0b0d15;
-  opacity: 0.72;
+  background:
+    linear-gradient(105deg, rgba(8, 9, 14, 0.9) 0%, rgba(8, 9, 14, 0.72) 55%, rgba(8, 9, 14, 0.55) 100%),
+    radial-gradient(ellipse at 20% 100%, rgba(225, 6, 0, 0.2), transparent 55%);
   pointer-events: none;
 }
 
@@ -35,79 +37,115 @@
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 1160px;
+  max-width: var(--container-max);
   margin-inline: auto;
-  padding-inline: clamp(1rem, 4vw, 1.25rem);
+  padding-inline: clamp(1.125rem, 4vw, 1.5rem);
 }
 
 .elementor-154 .uber-uns-block {
-  max-width: 964px;
+  max-width: 52rem;
 }
 
 .elementor-154 .uber-uns-block + .uber-uns-block {
-  margin-top: 2.5rem;
+  margin-top: 3rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.elementor-154 .uber-uns-brand {
+  margin: 0 0 0.85rem;
+  font-family: var(--font-accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
 }
 
 .elementor-154 .elementor-heading-title {
   margin: 0 0 1.25rem;
-  font-family: var(--e-global-typography-primary-font-family), sans-serif;
-  font-size: 48px;
+  font-family: var(--font-heading);
+  font-size: clamp(2.15rem, 5vw, 3rem);
   font-weight: 700;
-  line-height: 1.2em;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
   color: var(--e-global-color-secondary);
+}
+
+.elementor-154 .elementor-heading-title--sm {
+  font-size: clamp(1.65rem, 3.5vw, 2.15rem);
+}
+
+.elementor-154 .elementor-heading-title::after {
+  content: '';
+  display: block;
+  width: 2.5rem;
+  height: 3px;
+  margin-top: 1rem;
+  background: linear-gradient(90deg, var(--color-primary), rgba(225, 6, 0, 0.2));
+  border-radius: 999px;
 }
 
 .elementor-154 .uber-uns-text {
   margin: 0;
-  font-family: var(--e-global-typography-text-font-family), sans-serif;
-  font-size: var(--e-global-typography-text-font-size);
-  font-weight: var(--e-global-typography-text-font-weight);
-  line-height: var(--e-global-typography-text-line-height);
-  color: var(--e-global-color-text);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  font-weight: 400;
+  line-height: 1.7;
+  color: rgba(244, 242, 239, 0.88);
+  max-width: 42rem;
 }
 
 .elementor-154 .uber-uns-partners {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.35rem 1.5rem;
   margin: 0;
-  padding-left: 1.125rem;
-  list-style: disc;
+  padding: 0;
+  list-style: none;
 }
 
 .elementor-154 .uber-uns-partners li {
-  margin-bottom: 0.5rem;
-  color: var(--e-global-color-text);
+  margin: 0;
 }
 
 .elementor-154 .uber-uns-partners a {
-  color: var(--e-global-color-text);
+  display: block;
+  padding: 0.65rem 0.85rem;
+  color: var(--color-text-muted);
   text-decoration: none;
-  transition: color 0.25s ease;
+  border-radius: var(--card-radius);
+  border: 1px solid transparent;
+  transition:
+    color var(--transition),
+    background-color var(--transition),
+    border-color var(--transition),
+    padding-left var(--transition);
 }
 
 .elementor-154 .uber-uns-partners a:hover,
 .elementor-154 .uber-uns-partners a:focus-visible {
-  color: var(--e-global-color-primary);
-}
-
-@media (max-width: 1024px) {
-  .elementor-154 .uber-uns-section {
-    padding: 124px 0 72px;
-  }
+  color: var(--color-secondary);
+  background: var(--color-primary-soft);
+  border-color: rgba(225, 6, 0, 0.25);
+  padding-left: 1.1rem;
 }
 
 @media (max-width: 767px) {
   .elementor-154 .uber-uns-section {
-    padding: 124px 0 36px;
+    padding: calc(var(--header-height) + 3rem) 0 3.5rem;
   }
 
   .elementor-kit-8 {
     --e-global-typography-text-font-size: 14px;
   }
 
-  .elementor-154 .elementor-heading-title {
-    font-size: 36px;
+  .elementor-154 .uber-uns-partners {
+    grid-template-columns: 1fr;
   }
 
   .elementor-154 .uber-uns-block + .uber-uns-block {
     margin-top: 2rem;
+    padding-top: 2rem;
   }
 }

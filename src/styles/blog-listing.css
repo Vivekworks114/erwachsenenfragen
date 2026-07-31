@@ -1,8 +1,8 @@
 .elementor-kit-8 {
-  --e-global-color-primary: #cb0000;
+  --e-global-color-primary: #e10600;
   --e-global-color-secondary: #ffffff;
-  --e-global-color-text: #ffffff;
-  --e-global-color-accent: #cb0000;
+  --e-global-color-text: #f4f2ef;
+  --e-global-color-accent: #e10600;
   --e-global-typography-primary-font-family: 'Century Gothic', sans-serif;
   --e-global-typography-primary-font-weight: 700;
   --e-global-typography-primary-line-height: 1.2em;
@@ -54,11 +54,22 @@
 .elementor-heading-title {
   padding: 0;
   margin: 0;
-  font-size: clamp(1.75rem, 4vw, 2.25rem);
-  line-height: var(--e-global-typography-primary-line-height);
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.12;
+  letter-spacing: -0.03em;
   font-family: var(--e-global-typography-primary-font-family), sans-serif;
   font-weight: var(--e-global-typography-primary-font-weight);
-  color: var(--e-global-color-primary);
+  color: var(--e-global-color-secondary);
+}
+
+.elementor-heading-title::after {
+  content: '';
+  display: block;
+  width: 2.5rem;
+  height: 3px;
+  margin-top: 1rem;
+  background: linear-gradient(90deg, var(--color-primary), rgba(225, 6, 0, 0.2));
+  border-radius: 999px;
 }
 
 .elementor-posts-widget {
@@ -89,7 +100,8 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  background: var(--color-surface);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 40%),
+    var(--color-surface-elevated);
   border: 1px solid var(--color-border);
   border-radius: var(--card-radius-lg);
   overflow: hidden;
@@ -100,8 +112,8 @@
 }
 
 .elementor-posts .elementor-post:hover {
-  transform: translateY(-4px);
-  border-color: rgba(203, 0, 0, 0.4);
+  transform: translateY(-5px);
+  border-color: rgba(225, 6, 0, 0.4);
   box-shadow: var(--shadow-md);
 }
 
@@ -195,8 +207,10 @@
   align-self: flex-start;
   margin-top: auto;
   padding-top: 0.5rem;
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   color: var(--e-global-color-accent);
   font-family: var(--e-global-typography-accent-font-family), sans-serif;
 }

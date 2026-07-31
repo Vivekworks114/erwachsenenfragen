@@ -36,6 +36,14 @@ const {
     {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
   </head>
   <body>
+    <script is:inline>
+      (function () {
+        var path = location.pathname;
+        if (path.length > 1 && path.slice(-1) !== '/' && !/\.[a-z0-9]+$/i.test(path)) {
+          location.replace(path + '/' + location.search + location.hash);
+        }
+      })();
+    </script>
     <a class="skip-link" href="#content">Zum Inhalt springen</a>
     <slot />
   </body>

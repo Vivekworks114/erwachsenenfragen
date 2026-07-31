@@ -3,8 +3,11 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import BlogListingCard from '../../components/blog/BlogListingCard.astro';
-import '../../styles/blog-listing.css';
+import {
+  formatBlogDate,
+  getListingExcerpt,
+  getListingImage,
+} from '../../lib/blog-listing';
 
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -14,56 +17,239 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
 ---
 
 <BaseLayout
-  title="Blog - erwachsenenfragen.de"
-  description="Blog"
+  title="Blog - AdultVragen.de"
+  description="Aktuelle Artikel und Beiträge auf AdultVragen.de"
   canonicalUrl={canonicalUrl}
 >
   <Header />
-  <main id="content">
-    <div class="elementor elementor-2082 elementor-kit-8">
-      <section
-        class="elementor-section elementor-top-section elementor-section-boxed elementor-section-height-default"
-        aria-labelledby="blog-heading"
-      >
-        <div class="elementor-container elementor-column-gap-default">
-          <div class="elementor-column elementor-col-100 elementor-top-column">
-            <div class="elementor-widget-wrap elementor-element-populated">
-              <div class="elementor-widget elementor-widget-heading">
-                <div class="elementor-widget-container">
-                  <h1 id="blog-heading" class="elementor-heading-title elementor-size-default">
-                    Blog
-                  </h1>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+  <main id="content" class="blog-index">
+    <header class="blog-index__hero">
+      <div class="container">
+        <p class="blog-index__brand">AdultVragen.de</p>
+        <h1 class="blog-index__title">Blog</h1>
+        <p class="blog-index__subtitle">
+          Neue Artikel, Tipps und Einblicke rund um Fragen für das Schlafzimmer.
+        </p>
+      </div>
+    </header>
 
-      <section
-        class="elementor-section elementor-top-section elementor-section-boxed elementor-section-height-default"
-        aria-label="Blogbeiträge"
-      >
-        <div class="elementor-container elementor-column-gap-default">
-          <div class="elementor-column elementor-col-100 elementor-top-column">
-            <div class="elementor-widget-wrap elementor-element-populated">
-              <div
-                class="elementor-widget elementor-widget-posts elementor-grid-4 elementor-grid-tablet-2 elementor-grid-mobile-1 elementor-posts--thumbnail-top elementor-posts-widget"
-              >
-                <div class="elementor-widget-container">
-                  <div
-                    class="elementor-posts-container elementor-posts elementor-posts--skin-classic elementor-grid elementor-has-item-ratio"
-                    role="list"
-                  >
-                    {posts.map((post) => <BlogListingCard entry={post} />)}
+    <section class="blog-index__list section" aria-label="Blogbeiträge">
+      <div class="container">
+        <div class="blog-index__grid">
+          {
+            posts.map((post) => {
+              const postUrl = `/${post.id}/`;
+              const image = getListingImage(post);
+              const excerpt = getListingExcerpt(post);
+
+              return (
+                <article class="blog-card">
+                  {image && (
+                    <a href={postUrl} class="blog-card__media" tabindex="-1" aria-hidden="true">
+                      <img
+                        src={image.src}
+                        alt={image.alt}
+                        width={image.width}
+                        height={image.height}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </a>
+                  )}
+                  <div class="blog-card__body">
+                    <time class="blog-card__meta" datetime={post.data.pubDate.toISOString()}>
+                      {formatBlogDate(post.data.pubDate)}
+                    </time>
+                    <h2 class="blog-card__title">
+                      <a href={postUrl}>{post.data.title}</a>
+                    </h2>
+                    <p class="blog-card__excerpt">{excerpt}</p>
+                    <a href={postUrl} class="blog-card__link">
+                      Weiterlesen
+                    </a>
                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
+                </article>
+              );
+            })
+          }
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   </main>
   <Footer />
 </BaseLayout>
+
+<style>
+  .blog-index__hero {
+    position: relative;
+    padding-block: clamp(3.25rem, 8vw, 5.5rem) clamp(2rem, 5vw, 3rem);
+    border-bottom: 1px solid var(--color-border);
+    overflow: hidden;
+  }
+
+  .blog-index__hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 15% 0%, rgba(225, 6, 0, 0.16), transparent 50%),
+      linear-gradient(180deg, rgba(14, 17, 25, 0.55) 0%, transparent 100%);
+    pointer-events: none;
+  }
+
+  .blog-index__hero .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .blog-index__brand {
+    margin: 0 0 0.75rem;
+    font-family: var(--font-accent);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+  }
+
+  .blog-index__title {
+    margin: 0 0 0.85rem;
+    font-size: clamp(2.25rem, 5.5vw, 3.5rem);
+    letter-spacing: -0.035em;
+  }
+
+  .blog-index__title::after {
+    content: '';
+    display: block;
+    width: 2.5rem;
+    height: 3px;
+    margin-top: 1rem;
+    background: linear-gradient(90deg, var(--color-primary), rgba(225, 6, 0, 0.2));
+    border-radius: 999px;
+  }
+
+  .blog-index__subtitle {
+    margin: 0;
+    max-width: 36rem;
+    font-size: 1.1rem;
+    line-height: 1.55;
+    color: var(--color-text-muted);
+  }
+
+  .blog-index__list {
+    padding-block: clamp(2.5rem, 5vw, 4rem) clamp(3.5rem, 7vw, 5.5rem);
+  }
+
+  .blog-index__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(1.15rem, 2.5vw, 1.6rem);
+  }
+
+  .blog-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 40%),
+      var(--color-surface-elevated);
+    border: 1px solid var(--color-border);
+    border-radius: var(--card-radius-lg);
+    transition:
+      transform var(--transition),
+      border-color var(--transition),
+      box-shadow var(--transition);
+  }
+
+  .blog-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(225, 6, 0, 0.4);
+    box-shadow: var(--shadow-md);
+  }
+
+  .blog-card__media {
+    display: block;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .blog-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .blog-card:hover .blog-card__media img {
+    transform: scale(1.06);
+  }
+
+  .blog-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    flex: 1;
+    padding: 1.15rem 1.2rem 1.35rem;
+  }
+
+  .blog-card__meta {
+    font-family: var(--font-accent);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .blog-card__title {
+    margin: 0;
+    font-size: 1.1rem;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+  }
+
+  .blog-card__title a {
+    color: var(--color-secondary);
+    transition: color var(--transition);
+  }
+
+  .blog-card__title a:hover {
+    color: var(--color-primary);
+  }
+
+  .blog-card__excerpt {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+    flex: 1;
+  }
+
+  .blog-card__link {
+    align-self: flex-start;
+    margin-top: 0.5rem;
+    font-family: var(--font-accent);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+  }
+
+  .blog-card__link:hover {
+    color: #ff4d47;
+  }
+
+  @media (max-width: 1023px) {
+    .blog-index__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 599px) {
+    .blog-index__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

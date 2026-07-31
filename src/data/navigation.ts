@@ -11,16 +11,16 @@ function buildCategoryChildren(categorySlug: string): NavItem[] {
   if (!category) return [];
   return category.products.map((p) => ({
     label: p.name,
-    href: p.href.replace(/\/$/, ''),
+    href: p.href.endsWith('/') ? p.href : `${p.href}/`,
   }));
 }
 
 export const mainNavigation: NavItem[] = [
-  { label: 'Fragen ansehen', href: '/fragen-anzeigen' },
-  { label: 'Fragen stellen', href: '/fragen-stellen' },
-  { label: 'Über uns', href: '/uber-uns' },
-  { label: 'Kontakt', href: '/kontakt' },
-  { label: 'Anmeldung', href: '/anmeldung' },
+  { label: 'Fragen ansehen', href: '/fragen-anzeigen/' },
+  { label: 'Fragen stellen', href: '/fragen-stellen/' },
+  { label: 'Über uns', href: '/uber-uns/' },
+  { label: 'Kontakt', href: '/kontakt/' },
+  { label: 'Anmeldung', href: '/anmeldung/' },
 ];
 
 /** Matches live header nav: https://erwachsenenfragen.de/ */
@@ -80,10 +80,10 @@ export const headerNavigation: NavItem[] = [
 
 export const categoryNavigation: NavItem[] = catalog.categories.map((category) => ({
   label: category.name,
-  href: category.href.replace(/\/$/, ''),
+  href: category.href.endsWith('/') ? category.href : `${category.href}/`,
   children: category.products.map((product) => ({
     label: product.name,
-    href: product.href.replace(/\/$/, ''),
+    href: product.href.endsWith('/') ? product.href : `${product.href}/`,
   })),
 }));
 
